@@ -20,7 +20,7 @@ It can contain bugs which cannot be fixed by me.
 
 Thanks for support, help and comments:
 
- * Igor Pavlov (author of originl 7-Zip) 
+ * Igor Pavlov (author of original 7-Zip) 
  * PhonPhanom Sivilay (my freelancer) 
  * Francesco Nania 
  * Ilya Muravyov 
