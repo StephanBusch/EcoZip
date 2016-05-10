@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CEBFCC7C-0EFF-4EB6-8E17-D3F5EE5E08C1}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>7-zip</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)\..\7ze-src;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)\..\7ze-src;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)\..\7ze-src;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)\..\7ze-src;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>__USE_SSE_INTRIN__;PROJ_7ZIPEX;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;LANG;NEW_FOLDER_INTERFACE;EXTERNAL_CODECS;_7ZIP_LARGE_PAGES;WIN_LONG_PATH;SUPPORT_DEVICE_FILE;LIBBSC_OPENMP_SUPPORT;_LARGEFILE64_SOURCE;_FILE_OFFSET_BITS=64;WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>htmlhelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>$(SolutionDir)\..\7ze-src\CPP\7zip\UI\Explorer\Explorer.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>__USE_SSE_INTRIN__;PROJ_7ZIPEX;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;LANG;NEW_FOLDER_INTERFACE;EXTERNAL_CODECS;_7ZIP_LARGE_PAGES;WIN_LONG_PATH;SUPPORT_DEVICE_FILE;LIBBSC_OPENMP_SUPPORT;_LARGEFILE64_SOURCE;_FILE_OFFSET_BITS=64;WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>htmlhelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>$(SolutionDir)\..\7ze-src\CPP\7zip\UI\Explorer\Explorer.def</ModuleDefinitionFile>
+      <IgnoreSpecificDefaultLibraries>uafxcwd.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <MASM>
+      <AdditionalOptions>/Dx64 %(AdditionalOptions)</AdditionalOptions>
+    </MASM>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>__USE_SSE_INTRIN__;PROJ_7ZIPEX;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;LANG;NEW_FOLDER_INTERFACE;EXTERNAL_CODECS;_7ZIP_LARGE_PAGES;WIN_LONG_PATH;SUPPORT_DEVICE_FILE;LIBBSC_OPENMP_SUPPORT;_LARGEFILE64_SOURCE;_FILE_OFFSET_BITS=64;WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>htmlhelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>$(SolutionDir)\..\7ze-src\CPP\7zip\UI\Explorer\Explorer.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>__USE_SSE_INTRIN__;PROJ_7ZIPEX;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;LANG;NEW_FOLDER_INTERFACE;EXTERNAL_CODECS;_7ZIP_LARGE_PAGES;WIN_LONG_PATH;SUPPORT_DEVICE_FILE;LIBBSC_OPENMP_SUPPORT;_LARGEFILE64_SOURCE;_FILE_OFFSET_BITS=64;WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>htmlhelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>$(SolutionDir)\..\7ze-src\CPP\7zip\UI\Explorer\Explorer.def</ModuleDefinitionFile>
+    </Link>
+    <MASM>
+      <AdditionalOptions>/Dx64 %(AdditionalOptions)</AdditionalOptions>
+    </MASM>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ArchiveName.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\CompressCall.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ExtractingFilePath.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ZipRegistry.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\ExplorerE\ContextMenu.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\ExplorerE\DllExportsExplorer.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\ExplorerE\MyMessages.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\ExplorerE\RegistryContextMenu.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FormatUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\HelpUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\LangUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\ProgramLocation.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\RegistryUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\IntToString.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\Lang.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\MyString.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\MyVector.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\NewHandler.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\Random.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\StringConvert.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\StringToInt.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\UTFConvert.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\Wildcard.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\DLL.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\ErrorMsg.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileDir.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileFind.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileIO.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileName.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileSystem.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Menu.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\ProcessUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Registry.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\ResourceString.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Shell.cpp" />
+    <ClCompile Include="..\..\7ze-src\C\Alloc.c" />
+    <ClCompile Include="..\..\7ze-src\C\Threads.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\7ze-src\CPP\7zip\UI\Explorer\Explorer.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\7ze-src\CPP\7zip\UI\ExplorerE\resource.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

@@ -1,0 +1,1046 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\7ZIP_COMMON_OBJS">
+      <UniqueIdentifier>{87221a91-3bf4-4720-8a27-191556968fd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AGENT_OBJS">
+      <UniqueIdentifier>{534c1962-f1b5-4015-a327-6cdcb7274e5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ASM_OBJS">
+      <UniqueIdentifier>{0f56fdc5-4843-47a8-9b48-6a342ed46521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\C_OBJS">
+      <UniqueIdentifier>{0484c59f-93fc-4a78-933f-bf44ae4f30ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\COMMON_OBJS">
+      <UniqueIdentifier>{644e054a-8542-4dbe-9fa0-575f19dcfce9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\COMPRESS_OBJS">
+      <UniqueIdentifier>{3ff088af-cacb-4a01-a73c-fc70209c447b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CRYPTO_OBJS">
+      <UniqueIdentifier>{e39d009c-c243-409f-af04-4b993e4c04e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FME_HDRS">
+      <UniqueIdentifier>{f49e8021-1399-42bd-a20b-82a2428d4632}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FME_OBJS">
+      <UniqueIdentifier>{e625e8b9-4353-4c88-854c-8c7628c71ba6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI_COMMON_OBJS">
+      <UniqueIdentifier>{b069681e-c3d7-4bbe-bdb6-21dc289eb974}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI_EXPLORER_OBJS">
+      <UniqueIdentifier>{b7ab61aa-fa84-4c3c-adc9-eff39e8841db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WIN_OBJS">
+      <UniqueIdentifier>{2d662a3a-61d4-4233-aab8-bc5414e0101a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FME_OBJS\LEGACY">
+      <UniqueIdentifier>{b60c9d5c-4ab1-49a6-9c2b-4e4df8bc889a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FME_HDRS\LEGACY">
+      <UniqueIdentifier>{9445aae0-d225-4dc2-b795-dd8d144035fa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\7zipProFM\stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\7zipProFM.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\7zipProFMDlg.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\BenchmarkDialog.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\BCMenu.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\Bench.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\BtnST.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\CircularProgressCtrl.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\ColumnTreeCtrl.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\ComboDialog.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\CompressCall.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\CompressDialog.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\ContentsView.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\CopyDialog.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\DetailView.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\EditPage.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\ExtractCallback.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\ExtractDialog.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\ExtractGUI.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\FileFolderPluginOpen.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\FileManagerDlg.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\FMDropTarget.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\FMUtils.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\FoldersPage.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\FolderView.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\HashGUI.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\ImageUtils.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\LangPage.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\LoadCodecs.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\MenuPage.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\Messages.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\MessagesDialog.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\MyLoadMenu.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\NullFrame.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\NuonImg.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\OpenCallback.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\OverwriteDialog.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\PanelCopyThread.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\PasswordDialog.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\PluginInfoDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\PluginsPage.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\ProgressDialog2.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\RegistryAssociations.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\RegistryPath.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\Resource.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\RootFolder.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\SettingsPage.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\SplitDialog.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\SplitUtils.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\Synchronization.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\SystemPage.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\ThreadFolderOperations.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\UpdateCallback100.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\UpdateCallbackGUI.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateCallbackGUI2.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\UpdateGUI.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\7zipProFM\WICImagingFactory.h">
+      <Filter>Header Files\FME_HDRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\AltStreamsFolder.h">
+      <Filter>Header Files\FME_HDRS\LEGACY</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\EnumFormatEtc.h">
+      <Filter>Header Files\FME_HDRS\LEGACY</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FilePlugins.h">
+      <Filter>Header Files\FME_HDRS\LEGACY</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FormatUtils.h">
+      <Filter>Header Files\FME_HDRS\LEGACY</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FSDrives.h">
+      <Filter>Header Files\FME_HDRS\LEGACY</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FSFolder.h">
+      <Filter>Header Files\FME_HDRS\LEGACY</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\HelpUtils.h">
+      <Filter>Header Files\FME_HDRS\LEGACY</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\IFolder.h">
+      <Filter>Header Files\FME_HDRS\LEGACY</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\LangUtils.h">
+      <Filter>Header Files\FME_HDRS\LEGACY</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\PropertyName.h">
+      <Filter>Header Files\FME_HDRS\LEGACY</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\RegistryPlugins.h">
+      <Filter>Header Files\FME_HDRS\LEGACY</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\StringUtils.h">
+      <Filter>Header Files\FME_HDRS\LEGACY</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\SysIconUtils.h">
+      <Filter>Header Files\FME_HDRS\LEGACY</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\TextPairs.h">
+      <Filter>Header Files\FME_HDRS\LEGACY</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\CreateCoder.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\CWrappers.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\FilePathAutoRename.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\FileStreams.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\FilterCoder.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\InBuffer.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\InOutTempBuffer.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\LimitedStreams.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\LockedStream.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\MemBlocks.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\MethodId.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\MethodProps.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\OffsetStream.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\OutBuffer.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\OutMemStream.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\ProgressMt.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\ProgressUtils.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\PropId.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\StreamBinder.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\StreamObjects.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\StreamUtils.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\UniqBlocks.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\VirtThread.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\CopyCoder.cpp">
+      <Filter>Source Files\COMPRESS_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\CopyRegister.cpp">
+      <Filter>Source Files\COMPRESS_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Agent\Agent.cpp">
+      <Filter>Source Files\AGENT_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Agent\AgentOut.cpp">
+      <Filter>Source Files\AGENT_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Agent\AgentProxy.cpp">
+      <Filter>Source Files\AGENT_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Agent\ArchiveFolder.cpp">
+      <Filter>Source Files\AGENT_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Agent\ArchiveFolderOpen.cpp">
+      <Filter>Source Files\AGENT_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Agent\ArchiveFolderOut.cpp">
+      <Filter>Source Files\AGENT_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Agent\UpdateCallbackAgent.cpp">
+      <Filter>Source Files\AGENT_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ArchiveCommandLine.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ArchiveExtractCallback.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ArchiveName.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ArchiveOpenCallback.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\DefaultName.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\EnumDirItems.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\Extract.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ExtractingFilePath.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\HashCalc.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\OpenArchive.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\PropIDUtils.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\SetProperties.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\SortUtils.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\TempFiles.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\Update.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\UpdateAction.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\UpdateCallback.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\UpdatePair.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\UpdateProduce.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\WorkDir.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ZipRegistry.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\CommandLineParser.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\ExplorerE\ContextMenu.cpp">
+      <Filter>Source Files\UI_EXPLORER_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\ExplorerE\MyMessages.cpp">
+      <Filter>Source Files\UI_EXPLORER_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\ExplorerE\RegistryContextMenu.cpp">
+      <Filter>Source Files\UI_EXPLORER_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\CRC.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\CrcReg.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\DynLimBuf.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\IntToString.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\Lang.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\MyMap.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\MyString.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\MyXml.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\ListFileUtils.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\Random.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\Sha1Reg.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\StringConvert.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\StringToInt.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\UTFConvert.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\Wildcard.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Clipboard.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\CommonDialog.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\DLL.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\ErrorMsg.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileDir.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileFind.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileIO.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileLink.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileName.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileSystem.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\MemoryGlobal.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\MemoryLock.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Menu.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Net.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\ProcessUtils.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\PropVariant.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\PropVariantConv.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\PropVariantUtils.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Registry.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\ResourceString.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\SecurityUtils.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Shell.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\System.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\TimeUtils.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\C\7zCrc.c">
+      <Filter>Source Files\C_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\C\Alloc.c">
+      <Filter>Source Files\C_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\C\CpuArch.c">
+      <Filter>Source Files\C_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\C\Sha1.c">
+      <Filter>Source Files\C_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\C\Sort.c">
+      <Filter>Source Files\C_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\C\Threads.c">
+      <Filter>Source Files\C_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\7zipProFM.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\7zipProFMDlg.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\BCMenu.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\Bench.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\BenchmarkDialog.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\BtnST.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\CircularProgressCtrl.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\ColumnTreeCtrl.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\ComboDialog.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\CompressCall2.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\CompressDialog.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\ContentsView.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\CopyDialog.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\DetailView.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\EditPage.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\ExtractCallback.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\ExtractDialog.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\ExtractGUI.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\FileFolderPluginOpen.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\FileManagerDlg.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\FMDropTarget.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\FMUtils.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\FoldersPage.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\FolderView.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\HashGUI.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\ImageUtils.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\LangPage.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\LoadCodecs.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\MenuPage.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\MessagesDialog.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\MyLoadMenu.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\NetFolder.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\NullFrame.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\NuonImg.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\OpenCallback.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\OptionsDialog.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\OverwriteDialog.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PanelCopy.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PanelCopyThread.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PanelCrc.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PanelDrag.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PanelFolderChange.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PanelItemOpen.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PanelItems.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PanelListNotify.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PanelMenu.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PanelOperations.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PanelSelect.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PanelSort.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PanelSplitFile.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PasswordDialog.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PluginInfoDlg.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\PluginsPage.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\ProgressDialog2.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\RegistryAssociations.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\RootFolder.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\SettingsPage.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\SplitDialog.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\SplitUtils.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\Synchronization.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\SystemPage.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\ThreadFolderOperations.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\UpdateCallback100.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\UpdateCallbackGUI.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\UpdateCallbackGUI2.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\UpdateGUI.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\7zipProFM\WICImagingFactory.cpp">
+      <Filter>Source Files\FME_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\AltStreamsFolder.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\ClassDefs.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\EnumFormatEtc.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FilePlugins.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FormatUtils.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FSDrives.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FSFolder.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FSFolderCopy.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\HelpUtils.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\LangUtils.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\PropertyName.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\RegistryPlugins.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\RegistryUtils.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\StringUtils.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\SysIconUtils.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\TextPairs.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="..\..\7ze-src\Asm\x86\7zCrcOpt.asm">
+      <Filter>Source Files\ASM_OBJS</Filter>
+    </MASM>
+    <MASM Include="..\..\7ze-src\Asm\x86\AesOpt.asm">
+      <Filter>Source Files\ASM_OBJS</Filter>
+    </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\7zipProFM\7zipProFM.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\7zipProFM\res\My7zipProFM.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\7zipProFM\res\7zipProFM.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\AddToArchive.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\AddToArchiveH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\bottom.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\Close.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\CloseH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\CopyTo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\CopyToH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\Delete.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\DeleteH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\down_arrow.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\down_arrow_h.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\ExtracFiles.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\ExtracFilesH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\Logo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\Maximize.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\MaximizeH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\Menu.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\MenuH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\Minimize.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\MinimizeH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\MoveTo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\MoveToH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\nav_backward.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\nav_backward_h.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\nav_forward.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\nav_forward_h.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\nav_up.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\nav_up_h.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\navbar.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\Properties.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\PropertiesH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\rb_corner.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\Skin.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\SkinH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\TestArchive.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\TestArchiveH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\Title.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\view_list.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\view_list_h.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\Benchmark.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\BenchmarkH.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\DlgBkgnd.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\progress_num_18.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\progress_num_22.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\level2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\level1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\arrow.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\perf-background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\perf-memo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\time-background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\time-foreground.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\status-background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\status-hr.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\log-background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\btn-background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\btn-pause.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\btn-cancel.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\eco-large-icon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\7zipProFM\res\MenuLogo.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\7zipProFM\res\ALDO PC.TTF" />
+  </ItemGroup>
+</Project>

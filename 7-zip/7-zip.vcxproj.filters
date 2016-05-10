@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\C_OBJS">
+      <UniqueIdentifier>{0484c59f-93fc-4a78-933f-bf44ae4f30ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\COMMON_OBJS">
+      <UniqueIdentifier>{644e054a-8542-4dbe-9fa0-575f19dcfce9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FME_OBJS">
+      <UniqueIdentifier>{e625e8b9-4353-4c88-854c-8c7628c71ba6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI_COMMON_OBJS">
+      <UniqueIdentifier>{b069681e-c3d7-4bbe-bdb6-21dc289eb974}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI_EXPLORER_OBJS">
+      <UniqueIdentifier>{b7ab61aa-fa84-4c3c-adc9-eff39e8841db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WIN_OBJS">
+      <UniqueIdentifier>{2d662a3a-61d4-4233-aab8-bc5414e0101a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FME_OBJS\LEGACY">
+      <UniqueIdentifier>{b60c9d5c-4ab1-49a6-9c2b-4e4df8bc889a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ArchiveName.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\CompressCall.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ExtractingFilePath.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ZipRegistry.cpp">
+      <Filter>Source Files\UI_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\ExplorerE\ContextMenu.cpp">
+      <Filter>Source Files\UI_EXPLORER_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\ExplorerE\DllExportsExplorer.cpp">
+      <Filter>Source Files\UI_EXPLORER_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\ExplorerE\MyMessages.cpp">
+      <Filter>Source Files\UI_EXPLORER_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\ExplorerE\RegistryContextMenu.cpp">
+      <Filter>Source Files\UI_EXPLORER_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\IntToString.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\Lang.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\MyString.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\MyVector.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\NewHandler.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\Random.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\StringConvert.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\StringToInt.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\UTFConvert.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\Wildcard.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\DLL.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\ErrorMsg.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileDir.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileFind.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileIO.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileName.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileSystem.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Menu.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\ProcessUtils.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Registry.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\ResourceString.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Shell.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\C\Alloc.c">
+      <Filter>Source Files\C_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\C\Threads.c">
+      <Filter>Source Files\C_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FormatUtils.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\HelpUtils.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\LangUtils.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\ProgramLocation.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\RegistryUtils.cpp">
+      <Filter>Source Files\FME_OBJS\LEGACY</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\7ze-src\CPP\7zip\UI\Explorer\Explorer.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

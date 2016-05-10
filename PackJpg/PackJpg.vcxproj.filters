@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\7ZIP_COMMON_OBJS">
+      <UniqueIdentifier>{87221a91-3bf4-4720-8a27-191556968fd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\C_OBJS">
+      <UniqueIdentifier>{0484c59f-93fc-4a78-933f-bf44ae4f30ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\COMMON_OBJS">
+      <UniqueIdentifier>{644e054a-8542-4dbe-9fa0-575f19dcfce9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\COMPRESS_OBJS">
+      <UniqueIdentifier>{3ff088af-cacb-4a01-a73c-fc70209c447b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\COMPRESS_OBJS\LIBBSC_OBJS">
+      <UniqueIdentifier>{274574d0-a630-42a3-b3f3-732d84f70f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\COMPRESS_OBJS\PACKJPG_OBJS">
+      <UniqueIdentifier>{34f83f6e-061a-4605-976e-6538409eb187}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WIN_OBJS">
+      <UniqueIdentifier>{2d662a3a-61d4-4233-aab8-bc5414e0101a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\CreateCoder.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\FilterCoder.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\StreamUtils.cpp">
+      <Filter>Source Files\7ZIP_COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\CodecExports.cpp">
+      <Filter>Source Files\COMPRESS_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\DllExports2Compress.cpp">
+      <Filter>Source Files\COMPRESS_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\LibbscDecoder.cpp">
+      <Filter>Source Files\COMPRESS_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\LibbscEncoder.cpp">
+      <Filter>Source Files\COMPRESS_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\LibbscRegister.cpp">
+      <Filter>Source Files\COMPRESS_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\Packmp3Decoder.cpp">
+      <Filter>Source Files\COMPRESS_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\Packmp3Encoder.cpp">
+      <Filter>Source Files\COMPRESS_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\Packmp3Register.cpp">
+      <Filter>Source Files\COMPRESS_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\libbsc\adler32.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\LIBBSC_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\libbsc\bwt.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\LIBBSC_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\libbsc\coder.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\LIBBSC_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\libbsc\detectors.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\LIBBSC_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\libbsc\divsufsort.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\LIBBSC_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\libbsc\libbsc.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\LIBBSC_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\libbsc\lzp.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\LIBBSC_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\libbsc\platform.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\LIBBSC_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\libbsc\preprocessing.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\LIBBSC_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\libbsc\qlfc.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\LIBBSC_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\libbsc\qlfc_model.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\LIBBSC_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\libbsc\st.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\LIBBSC_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\packjpg\aricoder.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\PACKJPG_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\packjpg\bitops.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\PACKJPG_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\packjpg\huffmp3.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\PACKJPG_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\packjpg\packmp3.cpp">
+      <Filter>Source Files\COMPRESS_OBJS\PACKJPG_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Common\MyString.cpp">
+      <Filter>Source Files\COMMON_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\PropVariant.cpp">
+      <Filter>Source Files\WIN_OBJS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\7ze-src\C\Alloc.c">
+      <Filter>Source Files\C_OBJS</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\7ze-src\CPP\7zip\Compress\Codec.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>
