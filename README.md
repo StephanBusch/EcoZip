@@ -2,11 +2,11 @@
 
 is a free, open-source archiver for Windows similar to 7-Zip with:
 
-* new GUI written from scratch
-* new progress bar design
-* 7ze archive format
-* easy plugin interface for new codecs
-* a configurable list where codecs can be defined for file extensions
+ * new GUI written from scratch
+ * new progress bar design
+ * 7ze archive format
+ * easy plugin interface for new codecs
+ * a configurable list where codecs can be defined for file extensions
 
 This project runs by raising funds for freelancers as I am not a programmer.
 It can contain bugs which cannot be fixed by me.
@@ -20,10 +20,10 @@ It can contain bugs which cannot be fixed by me.
 
 Thanks for support, help and comments:
 
-  Igor Pavlov, 
-  PhonPhanom Sivilay, 
-  Francesco Nania, 
-  Ilya Muravyov 
+ * Igor Pavlov (author of originl 7-Zip) 
+ * PhonPhanom Sivilay (my freelancer) 
+ * Francesco Nania 
+ * Ilya Muravyov 
 
 # License
 
