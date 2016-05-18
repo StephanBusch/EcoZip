@@ -26,6 +26,7 @@ Thanks for support, help and comments:
  * Bulat Ziganshin (thanks for the idea of grouping file extensions in a config file)
  * Ilya Grebnov (author of  LIBBSC 3.1.0)
  * Mario Scholz (author of  m7zRepacker)
+ * Mathieu Chartier (author of MCM 0.83)
  * Matthias Stirner (author of packMP3)
  * Matthias Stirner (author of packPNM)
  * Moinak Ghosh (thanks for speeding up LZMA using prefetch instructions)
