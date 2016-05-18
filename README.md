@@ -23,6 +23,13 @@ Thanks for support, help and comments:
  * Igor Pavlov (author of original 7-Zip) 
  * PhonPhanom Sivilay (my freelancer) 
  * Manfred Slot (designer)
+ * Bulat Ziganshin (thanks for the idea of grouping file extensions in a config file)
+ * Ilya Grebnov (author of  LIBBSC 3.1.0)
+ * Mario Scholz (author of  m7zRepacker)
+ * Matthias Stirner (author of packMP3)
+ * Matthias Stirner (author of packPNM)
+ * Moinak Ghosh (thanks for speeding up LZMA using prefetch instructions)
+ * Siyuan Fu (author of CSC 3.2)
  * Francesco Nania 
  * Ilya Muravyov 
 
@@ -47,12 +54,26 @@ Unless required by applicable law or agreed to in writing, software distributed 
  * LIBBSC 3.1.0 
     Copyright (c) 2009-2012 Ilya Grebnov <Ilya.Grebnov@gmail.com>
 	LGPL license
+ * MCM 0.83
+    Copyright (c) 2015 Mathieu Chartier
+ 	GPL license
  * packMP3 1.0e
     Copyright 2010-2014 Ratisbon University & Matthias Stirner
-    LGPL license
+    	LGPL license
  * packPNM 1.6c
     Copyright 2006-2014 HTW Aalen University & Matthias Stirner
-    LGPL license
+    	LGPL license
+
+# Known Limitations
+
+* there is no commandline executable and no 32-bit executable
+* Compression settings are read from groups defined in the 7z.groups.ini file. 
+  To change compression of filetypes defined in that file, you need to edit this .ini file.
+* when using the 7z.groups.ini file, you will need approx. 4 GB of free memory
+* in the sources, packJPG is mentioned but the codec integrated here is packMP3
+* some plugin codecs (MCM, packPNM) are experimental and not used in 7z.groups.ini by default
+* may contain bugs
+
 
 # Donations
 
