@@ -27,10 +27,11 @@ Thanks for support, help and comments:
  * Ilya Grebnov (author of  LIBBSC 3.1.0)
  * Mario Scholz (author of  m7zRepacker)
  * Mathieu Chartier (author of MCM 0.83)
- * Matthias Stirner (author of packMP3)
- * Matthias Stirner (author of packPNM)
+ * Matthias Stirner (author of packMP3 and packPNM)
  * Moinak Ghosh (thanks for speeding up LZMA using prefetch instructions)
  * Siyuan Fu (author of CSC 3.2)
+ * Yann Collet
+ * Rich Geldreich
  * Francesco Nania 
  * Ilya Muravyov 
 
