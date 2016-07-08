@@ -1,4 +1,4 @@
-# 7-Zip-Pro
+# EcoZip
 
 is a free, open-source archiver for Windows similar to 7-Zip with:
 
@@ -20,7 +20,7 @@ It can contain bugs which cannot be fixed by me.
 
 Thanks for support, help and comments:
 
- * Igor Pavlov (author of original 7-Zip) 
+ * Igor Pavlov (author of 7-Zip) 
  * PhonPhanom Sivilay (my freelancer) 
  * Manfred Slot (designer)
  * Bulat Ziganshin (thanks for the idea of grouping file extensions in a config file)
