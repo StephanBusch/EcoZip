@@ -77,9 +77,6 @@
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7ze\7zeFolderInStream.cpp">
       <Filter>Source Files\7ZE_OBJS</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7ze\7zeFolderOutStream.cpp">
-      <Filter>Source Files\7ZE_OBJS</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7ze\7zeGroup.cpp">
       <Filter>Source Files\7ZE_OBJS</Filter>
     </ClCompile>

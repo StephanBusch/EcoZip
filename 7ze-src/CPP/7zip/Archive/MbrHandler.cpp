@@ -158,6 +158,7 @@ static const CPartType kPartTypes[] =
   { 0x1E, kFat, "FAT16-LBA-WIN95-Hidden" },
   { 0x82, 0, "Solaris x86 / Linux swap" },
   { 0x83, 0, "Linux" },
+  { 0x8E, "lvm", "Linux LVM" },
   { 0xA5, 0, "BSD slice" },
   { 0xBE, 0, "Solaris 8 boot" },
   { 0xBF, 0, "New Solaris x86" },
@@ -189,8 +190,14 @@ class CHandler: public CHandlerCont
   UInt64 _totalSize;
   CByteBuffer _buffer;
 
-  virtual UInt64 GetItemPos(UInt32 index) const { return _items[index].Part.GetPos(); }
-  virtual UInt64 GetItemSize(UInt32 index) const { return _items[index].Size; }
+  virtual int GetItem_ExtractInfo(UInt32 index, UInt64 &pos, UInt64 &size) const
+  {
+    const CItem &item = _items[index];
+    pos = item.Part.GetPos();
+    size = item.Size;
+    return NExtract::NOperationResult::kOK;
+  }
+
   HRESULT ReadTables(IInStream *stream, UInt32 baseLba, UInt32 lba, unsigned level);
 public:
   INTERFACE_IInArchive_Cont(;)
@@ -332,15 +339,15 @@ enum
   kpidEndChs
 };
 
-static const STATPROPSTG kProps[] =
+static const CStatProp kProps[] =
 {
   { NULL, kpidPath, VT_BSTR},
   { NULL, kpidSize, VT_UI8},
   { NULL, kpidFileSystem, VT_BSTR},
   { NULL, kpidOffset, VT_UI8},
-  { (LPOLESTR)L"Primary", kpidPrimary, VT_BOOL},
-  { (LPOLESTR)L"Begin CHS", kpidBegChs, VT_BSTR},
-  { (LPOLESTR)L"End CHS", kpidEndChs, VT_BSTR}
+  { "Primary", kpidPrimary, VT_BOOL},
+  { "Begin CHS", kpidBegChs, VT_BSTR},
+  { "End CHS", kpidEndChs, VT_BSTR}
 };
 
 IMP_IInArchive_Props_WITH_NAME

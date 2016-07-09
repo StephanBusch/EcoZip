@@ -197,9 +197,11 @@ bool CBrowseDialog::OnInit()
   #endif
 
   #ifndef _SFX
-  if (ReadSingleClick())
+  CFmSettings st;
+  st.Load();
+  if (st.SingleClick)
     _list.SetExtendedListViewStyle(LVS_EX_ONECLICKACTIVATE | LVS_EX_TRACKSELECT);
-  _showDots = ReadShowDots();
+  _showDots = st.ShowDots;
   #endif
 
   {
@@ -277,7 +279,7 @@ bool CBrowseDialog::OnInit()
   if (!GetParentPath(FilePath, DirPrefix, name))
     DirPrefix = _topDirPrefix;
 
-  for(;;)
+  for (;;)
   {
     UString baseFolder = DirPrefix;
     if (Reload(baseFolder, name) == S_OK)
@@ -999,11 +1001,13 @@ bool CorrectFsPath(const UString &relBase, const UString &path2, UString &result
 }
 
 #else
+
 bool CorrectFsPath(const UString & /* relBase */, const UString &path, UString &result)
 {
   result = path;
   return true;
 }
+
 #endif
 
 bool Dlg_CreateFolder(HWND wnd, UString &destName)

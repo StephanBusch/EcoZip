@@ -242,7 +242,7 @@ struct COptHeader
 
   int GetNumFileAlignBits() const
   {
-    for (int i = 9; i <= 16; i++)
+    for (unsigned i = 0; i <= 31; i++)
       if (((UInt32)1 << i) == FileAlign)
         return i;
     return -1;
@@ -347,18 +347,24 @@ struct CSection
 
   CSection(): IsRealSect(false), IsDebug(false), IsAdditionalSection(false) {}
 
+  const UInt32 GetSizeExtract() const { return PSize; }
+  const UInt32 GetSizeMin() const { return MyMin(PSize, VSize); }
+
   void UpdateTotalSize(UInt32 &totalSize) const
   {
     UInt32 t = Pa + PSize;
     if (totalSize < t)
       totalSize = t;
   }
+  
   void Parse(const Byte *p);
 
   int Compare(const CSection &s) const
   {
     RINOZ(MyCompare(Pa, s.Pa));
-    return MyCompare(PSize, s.PSize);
+    UInt32 size1 = GetSizeExtract();
+    UInt32 size2 = s.GetSizeExtract();
+    return MyCompare(size1, size2);
   }
 };
 
@@ -765,7 +771,7 @@ enum
   // kpidBaseOfData32,
 };
 
-static const STATPROPSTG kArcProps[] =
+static const CStatProp kArcProps[] =
 {
   // { NULL, kpidWarning, VT_BSTR},
   { NULL, kpidCpu, VT_BSTR},
@@ -776,28 +782,28 @@ static const STATPROPSTG kArcProps[] =
   { NULL, kpidChecksum, VT_UI4},
   { NULL, kpidName, VT_BSTR},
 
-  { (LPOLESTR)L"Image Size", kpidImageSize, VT_UI4},
-  { (LPOLESTR)L"Section Alignment", kpidSectAlign, VT_UI4},
-  { (LPOLESTR)L"File Alignment", kpidFileAlign, VT_UI4},
-  { (LPOLESTR)L"Code Size", kpidCodeSize, VT_UI4},
-  { (LPOLESTR)L"Initialized Data Size", kpidInitDataSize, VT_UI4},
-  { (LPOLESTR)L"Uninitialized Data Size", kpidUnInitDataSize, VT_UI4},
-  { (LPOLESTR)L"Linker Version", kpidLinkerVer, VT_BSTR},
-  { (LPOLESTR)L"OS Version", kpidOsVer, VT_BSTR},
-  { (LPOLESTR)L"Image Version", kpidImageVer, VT_BSTR},
-  { (LPOLESTR)L"Subsystem Version", kpidSubsysVer, VT_BSTR},
-  { (LPOLESTR)L"Subsystem", kpidSubSystem, VT_BSTR},
-  { (LPOLESTR)L"DLL Characteristics", kpidDllCharacts, VT_BSTR},
-  { (LPOLESTR)L"Stack Reserve", kpidStackReserve, VT_UI8},
-  { (LPOLESTR)L"Stack Commit", kpidStackCommit, VT_UI8},
-  { (LPOLESTR)L"Heap Reserve", kpidHeapReserve, VT_UI8},
-  { (LPOLESTR)L"Heap Commit", kpidHeapCommit, VT_UI8},
-  { (LPOLESTR)L"Image Base", kpidImageBase, VT_UI8},
+  { "Image Size", kpidImageSize, VT_UI4},
+  { "Section Alignment", kpidSectAlign, VT_UI4},
+  { "File Alignment", kpidFileAlign, VT_UI4},
+  { "Code Size", kpidCodeSize, VT_UI4},
+  { "Initialized Data Size", kpidInitDataSize, VT_UI4},
+  { "Uninitialized Data Size", kpidUnInitDataSize, VT_UI4},
+  { "Linker Version", kpidLinkerVer, VT_BSTR},
+  { "OS Version", kpidOsVer, VT_BSTR},
+  { "Image Version", kpidImageVer, VT_BSTR},
+  { "Subsystem Version", kpidSubsysVer, VT_BSTR},
+  { "Subsystem", kpidSubSystem, VT_BSTR},
+  { "DLL Characteristics", kpidDllCharacts, VT_BSTR},
+  { "Stack Reserve", kpidStackReserve, VT_UI8},
+  { "Stack Commit", kpidStackCommit, VT_UI8},
+  { "Heap Reserve", kpidHeapReserve, VT_UI8},
+  { "Heap Commit", kpidHeapCommit, VT_UI8},
+  { "Image Base", kpidImageBase, VT_UI8},
   { NULL, kpidComment, VT_BSTR},
   
-  // { (LPOLESTR)L"Address Of Entry Point", kpidAddressOfEntryPoint, VT_UI8},
-  // { (LPOLESTR)L"Base Of Code", kpidBaseOfCode, VT_UI8},
-  // { (LPOLESTR)L"Base Of Data", kpidBaseOfData32, VT_UI8},
+  // { "Address Of Entry Point", kpidAddressOfEntryPoint, VT_UI8},
+  // { "Base Of Code", kpidBaseOfCode, VT_UI8},
+  // { "Base Of Data", kpidBaseOfData32, VT_UI8},
 };
 
 static const Byte kProps[] =
@@ -1039,7 +1045,7 @@ STDMETHODIMP CHandler::GetProperty(UInt32 index, PROPID propID, PROPVARIANT *val
     switch (propID)
     {
       case kpidPath: prop = MultiByteToUnicodeString(item.Name); break;
-      case kpidSize: prop = (UInt64)MyMin(item.PSize, item.VSize); break;
+      case kpidSize: prop = (UInt64)item.PSize; break;
       case kpidPackSize: prop = (UInt64)item.PSize; break;
       case kpidVirtualSize: prop = (UInt64)item.VSize; break;
       case kpidOffset: prop = item.Pa; break;
@@ -1148,7 +1154,7 @@ HRESULT CHandler::ReadTable(UInt32 offset, CRecordVector<CTableItem> &items)
   return S_OK;
 }
 
-static const UInt32 kFileSizeMax = (UInt32)1 << 30;
+static const UInt32 kFileSizeMax = (UInt32)1 << 31;
 static const unsigned kNumResItemsMax = (unsigned)1 << 23;
 static const unsigned kNumStringLangsMax = 256;
 
@@ -1883,31 +1889,70 @@ static bool ParseVersion(const Byte *p, UInt32 size, CTextFile &f, CObjectVector
     }
     f.CloseBlock(2);
   }
+
   f.CloseBlock(0);
   return true;
 }
 
+
 HRESULT CHandler::OpenResources(unsigned sectionIndex, IInStream *stream, IArchiveOpenCallback *callback)
 {
   const CSection &sect = _sections[sectionIndex];
-  size_t fileSize = sect.PSize; // Maybe we need sect.VSize here !!!
-  if (fileSize > kFileSizeMax)
-    return S_FALSE;
+  size_t fileSize = sect.PSize;
   {
-    UInt64 fileSize64 = fileSize;
-    if (callback)
-      RINOK(callback->SetTotal(NULL, &fileSize64));
-    RINOK(stream->Seek(sect.Pa, STREAM_SEEK_SET, NULL));
-    _buf.Alloc(fileSize);
-    for (size_t pos = 0; pos < fileSize;)
+    size_t fileSizeMin = sect.PSize;
+    
+    if (sect.VSize < sect.PSize)
     {
-      UInt64 offset64 = pos;
+      fileSize = fileSizeMin = sect.VSize;
+      const int numBits = _optHeader.GetNumFileAlignBits();
+      if (numBits > 0)
+      {
+        const UInt32 mask = ((UInt32)1 << numBits) - 1;
+        const size_t end = (size_t)((sect.VSize + mask) & (UInt32)~mask);
+        if (end > sect.VSize)
+          if (end <= sect.PSize)
+            fileSize = end;
+          else
+            fileSize = sect.PSize;
+      }
+    }
+
+    if (fileSize > kFileSizeMax)
+      return S_FALSE;
+
+    {
+      const UInt64 fileSize64 = fileSize;
       if (callback)
-        RINOK(callback->SetCompleted(NULL, &offset64))
+        RINOK(callback->SetTotal(NULL, &fileSize64));
+    }
+    
+    RINOK(stream->Seek(sect.Pa, STREAM_SEEK_SET, NULL));
+    
+    _buf.Alloc(fileSize);
+    
+    size_t pos;
+    
+    for (pos = 0; pos < fileSize;)
+    {
+      {
+        const UInt64 offset64 = pos;
+        if (callback)
+          RINOK(callback->SetCompleted(NULL, &offset64))
+      }
       size_t rem = MyMin(fileSize - pos, (size_t)(1 << 22));
-      RINOK(ReadStream_FALSE(stream, _buf + pos, rem));
+      RINOK(ReadStream(stream, _buf + pos, &rem));
+      if (rem == 0)
+      {
+        if (pos < fileSizeMin)
+          return S_FALSE;
+        break;
+      }
       pos += rem;
     }
+    
+    if (pos < fileSize)
+      memset(_buf + pos, 0, fileSize - pos);
   }
   
   _usedRes.Alloc(fileSize);
@@ -1917,6 +1962,7 @@ HRESULT CHandler::OpenResources(unsigned sectionIndex, IInStream *stream, IArchi
   _oneLang = true;
   bool stringsOk = true;
   size_t maxOffset = 0;
+  
   FOR_VECTOR (i, specItems)
   {
     const CTableItem &item1 = specItems[i];
@@ -1998,6 +2044,7 @@ HRESULT CHandler::OpenResources(unsigned sectionIndex, IInStream *stream, IArchi
           }
           // PrintError("ver.Parse error");
         }
+  
         item.Enabled = true;
         _items.Add(item);
       }
@@ -2026,16 +2073,13 @@ HRESULT CHandler::OpenResources(unsigned sectionIndex, IInStream *stream, IArchi
 
   _usedRes.Free();
 
-  int numBits = _optHeader.GetNumFileAlignBits();
-  if (numBits >= 0)
   {
-    UInt32 mask = (1 << numBits) - 1;
-    size_t end = ((maxOffset + mask) & ~mask);
-    // 9.29: we use only PSize. PSize can be larger than VSize
-    if (/* end < sect.VSize && */ end <= sect.PSize)
+    // PSize can be much larger than VSize in some exe installers.
+    // it contains archive data after PE resources.
+    // So we need to use PSize here!
+    if (maxOffset < sect.PSize)
     {
-      CSection sect2;
-      sect2.Flags = 0;
+      size_t end = fileSize;
 
       // we skip Zeros to start of aligned block
       size_t i;
@@ -2045,12 +2089,15 @@ HRESULT CHandler::OpenResources(unsigned sectionIndex, IInStream *stream, IArchi
       if (i == end)
         maxOffset = end;
       
+      CSection sect2;
+      sect2.Flags = 0;
       sect2.Pa = sect.Pa + (UInt32)maxOffset;
       sect2.Va = sect.Va + (UInt32)maxOffset;
 
       // 9.29: we use sect.PSize instead of sect.VSize to support some CAB-SFX
       // the code for .rsrc_2 is commented.
       sect2.PSize = sect.PSize - (UInt32)maxOffset;
+
       if (sect2.PSize != 0)
       {
         sect2.VSize = sect2.PSize;
@@ -2196,14 +2243,14 @@ HRESULT CHandler::Open2(IInStream *stream, IArchiveOpenCallback *callback)
       }
       */
 
-      size_t i;
-      for (i = 0; i < processed; i++)
-        if (buf[i] != 0)
+      size_t k;
+      for (k = 0; k < processed; k++)
+        if (buf[k] != 0)
           break;
       if (processed < size && processed < 100)
         _totalSize += (UInt32)processed;
-      else if (((_totalSize + i) & 0x1FF) == 0 || processed < size)
-        _totalSize += (UInt32)i;
+      else if (((_totalSize + k) & 0x1FF) == 0 || processed < size)
+        _totalSize += (UInt32)k;
     }
   }
 
@@ -2233,9 +2280,9 @@ HRESULT CHandler::Open2(IInStream *stream, IArchiveOpenCallback *callback)
     sections.Sort();
     UInt32 limit = (1 << 12);
     unsigned num = 0;
-    FOR_VECTOR(i, sections)
+    FOR_VECTOR (k, sections)
     {
-      const CSection &s = sections[i];
+      const CSection &s = sections[k];
       if (s.Pa > limit)
       {
         CSection &s2 = _sections.AddNew();
@@ -2463,7 +2510,7 @@ STDMETHODIMP CHandler::Extract(const UInt32 *indices, UInt32 numItems,
     else if (mixItem.ResourceIndex >= 0)
       size = _items[mixItem.ResourceIndex].GetSize();
     else
-      size = _sections[mixItem.SectionIndex].PSize;
+      size = _sections[mixItem.SectionIndex].GetSizeExtract();
     totalSize += size;
   }
   extractCallback->SetTotal(totalSize);
@@ -2539,7 +2586,7 @@ STDMETHODIMP CHandler::Extract(const UInt32 *indices, UInt32 numItems,
     }
     else
     {
-      currentItemSize = sect.PSize;
+      currentItemSize = sect.GetSizeExtract();
       if (!testMode && !outStream)
         continue;
       
@@ -2798,12 +2845,12 @@ enum
   // , kpidImageBase
 };
 
-static const STATPROPSTG kArcProps[] =
+static const CStatProp kArcProps[] =
 {
   // { NULL, kpidHeadersSize, VT_UI4 },
   { NULL, kpidCpu, VT_BSTR},
-  { (LPOLESTR)L"Subsystem", kpidSubSystem, VT_BSTR },
-  // { (LPOLESTR)L"Image Base", kpidImageBase, VT_UI8 }
+  { "Subsystem", kpidSubSystem, VT_BSTR },
+  // { "Image Base", kpidImageBase, VT_UI8 }
 };
 
 IMP_IInArchive_Props

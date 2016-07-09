@@ -858,7 +858,6 @@ STDMETHODIMP CFSFolder::WasChanged(Int32 *wasChanged)
     {
       _findChangeNotification.FindNext();
       wasChangedMain = true;
-      break;
     }
     else
       break;

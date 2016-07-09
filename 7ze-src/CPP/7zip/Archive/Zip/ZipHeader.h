@@ -18,9 +18,8 @@ namespace NSignature
   const UInt32 kEcd               = 0x06054B50;
   const UInt32 kEcd64             = 0x06064B50;
   const UInt32 kEcd64Locator      = 0x07064B50;
-
-  // const UInt32 kSpan    = 0x08074B50;
-  const UInt32 kNoSpan = 0x30304b50; // PK00, replaces kSpan, if there is only 1 segment
+  const UInt32 kSpan              = 0x08074B50;
+  const UInt32 kNoSpan            = 0x30304B50; // PK00, replaces kSpan, if there is only 1 segment
 }
 
 const unsigned kLocalHeaderSize = 4 + 26; // including signature
@@ -84,6 +83,8 @@ namespace NFileHeader
       kNTFS = 0x0A,
       kStrongEncrypt = 0x17,
       kUnixTime = 0x5455,
+      kIzUnicodeComment = 0x6375,
+      kIzUnicodeName = 0x7075,
       kWzAES = 0x9901
     };
   }
@@ -153,36 +154,7 @@ namespace NFileHeader
     };
   }
 
-  namespace NUnixAttrib
-  {
-    const UInt32 kIFMT   =   0170000;  // file type mask
-    
-    const UInt32 kIFDIR  =   0040000;  // directory
-    const UInt32 kIFREG  =   0100000;  // regular file
-    const UInt32 kIFSOCK =   0140000;  // socket (BSD, not SysV or Amiga)
-    const UInt32 kIFLNK  =   0120000;  // symbolic link (not SysV, Amiga)
-    const UInt32 kIFBLK  =   0060000;  // block special       (not Amiga)
-    const UInt32 kIFCHR  =   0020000;  // character special   (not Amiga)
-    const UInt32 kIFIFO  =   0010000;  // fifo    (BCC, not MSC or Amiga)
-    
-    const UInt32 kISUID  =   04000;    // set user id on execution
-    const UInt32 kISGID  =   02000;    // set group id on execution
-    const UInt32 kISVTX  =   01000;    // directory permissions control
-    const UInt32 kENFMT  =  kISGID;    // record locking enforcement flag
-    const UInt32 kIRWXU  =   00700;    // read, write, execute: owner
-    const UInt32 kIRUSR  =   00400;    // read permission: owner
-    const UInt32 kIWUSR  =   00200;    // write permission: owner
-    const UInt32 kIXUSR  =   00100;    // execute permission: owner
-    const UInt32 kIRWXG  =   00070;    // read, write, execute: group
-    const UInt32 kIRGRP  =   00040;    // read permission: group
-    const UInt32 kIWGRP  =   00020;    // write permission: group
-    const UInt32 kIXGRP  =   00010;    // execute permission: group
-    const UInt32 kIRWXO  =   00007;    // read, write, execute: other
-    const UInt32 kIROTH  =   00004;    // read permission: other
-    const UInt32 kIWOTH  =   00002;    // write permission: other
-    const UInt32 kIXOTH  =   00001;    // execute permission: other
-  }
-  
+
   namespace NAmigaAttrib
   {
     const UInt32 kIFMT     = 06000;    // Amiga file type mask

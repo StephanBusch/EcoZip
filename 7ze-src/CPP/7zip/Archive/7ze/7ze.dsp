@@ -158,14 +158,6 @@ SOURCE=.\7zeFolderInStream.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\7zeFolderOutStream.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\7zeFolderOutStream.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\7zeHandler.cpp
 # End Source File
 # Begin Source File
@@ -339,14 +331,6 @@ SOURCE=..\Common\CoderMixer2.cpp
 # Begin Source File
 
 SOURCE=..\Common\CoderMixer2.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\Common\CrossThreadProgress.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\Common\CrossThreadProgress.h
 # End Source File
 # Begin Source File
 

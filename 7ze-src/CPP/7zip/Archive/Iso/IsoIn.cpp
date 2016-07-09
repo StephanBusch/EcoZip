@@ -8,6 +8,8 @@
 
 #include "../../Common/StreamUtils.h"
 
+#include "../HandlerCont.h"
+
 #include "IsoIn.h"
 
 namespace NArchive {
@@ -86,15 +88,15 @@ AString CBootInitialEntry::GetName() const
 
 Byte CInArchive::ReadByte()
 {
-  if (m_BufferPos >= BlockSize)
+  if (m_BufferPos >= kBlockSize)
     m_BufferPos = 0;
   if (m_BufferPos == 0)
   {
-    size_t processed = BlockSize;
+    size_t processed = kBlockSize;
     HRESULT res = ReadStream(_stream, m_Buffer, &processed);
     if (res != S_OK)
       throw CSystemException(res);
-    if (processed != BlockSize)
+    if (processed != kBlockSize)
       throw CUnexpectedEndException();
     UInt64 end = _position + processed;
     if (PhySize < end)
@@ -292,7 +294,11 @@ void CInArchive::ReadVolumeDescriptor(CVolumeDescriptor &d)
   d.FileStructureVersion = ReadByte(); // = 1
   SkipZeros(1);
   ReadBytes(d.ApplicationUse, sizeof(d.ApplicationUse));
-  SkipZeros(653);
+
+  // Most ISO contains zeros in the following field (reserved for future standardization).
+  // But some ISO programs write some data to that area.
+  // So we disable check for zeros.
+  Skip(653); // SkipZeros(653);
 }
 
 static const Byte kSig_CD001[5] = { 'C', 'D', '0', '0', '1' };
@@ -509,7 +515,7 @@ HRESULT CInArchive::Open2()
 
   PhySize = _position;
   m_BufferPos = 0;
-  BlockSize = kBlockSize;
+  // BlockSize = kBlockSize;
   
   for (;;)
   {
@@ -596,7 +602,7 @@ HRESULT CInArchive::Open2()
   ReadBootInfo();
 
   {
-    FOR_VECTOR(i, Refs)
+    FOR_VECTOR (i, Refs)
     {
       const CRef &ref = Refs[i];
       for (UInt32 j = 0; j < ref.NumExtents; j++)
@@ -608,12 +614,28 @@ HRESULT CInArchive::Open2()
     }
   }
   {
-    FOR_VECTOR(i, BootEntries)
+    FOR_VECTOR (i, BootEntries)
     {
       const CBootInitialEntry &be = BootEntries[i];
       UpdatePhySize(be.LoadRBA, GetBootItemSize(i));
     }
   }
+
+  if (PhySize < _fileSize)
+  {
+    UInt64 rem = _fileSize - PhySize;
+    const UInt64 kRemMax = 1 << 21;
+    if (rem <= kRemMax)
+    {
+      RINOK(_stream->Seek(PhySize, STREAM_SEEK_SET, NULL));
+      bool areThereNonZeros = false;
+      UInt64 numZeros = 0;
+      RINOK(ReadZeroTail(_stream, areThereNonZeros, numZeros, kRemMax));
+      if (!areThereNonZeros)
+        PhySize += numZeros;
+    }
+  }
+
   return S_OK;
 }
 

@@ -42,10 +42,14 @@ CHandler::CHandler()
   #endif
 
   #ifdef EXTRACT_ONLY
+  
   _crcSize = 4;
+  
   #ifdef __7ZE_SET_PROPERTIES
   _numThreads = NSystem::GetNumberOfProcessors();
+  _useMultiThreadMixer = true;
   #endif
+  
   #endif
   bLoadConfig = true;
 #ifdef _DEBUG
@@ -443,11 +447,11 @@ HRESULT CHandler::SetMethodToProp(CNum folderIndex, PROPVARIANT *prop) const
         name = "LZMA2";
         if (propsSize == 1)
         {
-          Byte p = props[0];
-          if ((p & 1) == 0)
-            ConvertUInt32ToString((UInt32)((p >> 1) + 12), s);
+          Byte d = props[0];
+          if ((d & 1) == 0)
+            ConvertUInt32ToString((UInt32)((d >> 1) + 12), s);
           else
-            GetStringForSizeValue(s, 3 << ((p >> 1) + 11));
+            GetStringForSizeValue(s, 3 << ((d >> 1) + 11));
         }
       }
       else if (id == k_PPMD)
@@ -824,10 +828,14 @@ STDMETHODIMP CHandler::SetProperties(const wchar_t * const *names, const PROPVAR
       return E_INVALIDARG;
     const PROPVARIANT &value = values[i];
     UInt32 number;
-    int index = ParseStringToUInt32(name, number);
+    unsigned index = ParseStringToUInt32(name, number);
     if (index == 0)
     {
-      if (name.IsEqualTo("mtf")) return PROPVARIANT_to_bool(value, _useMultiThreadMixer);
+      if (name.IsEqualTo("mtf"))
+      {
+        RINOK(PROPVARIANT_to_bool(value, _useMultiThreadMixer));
+        continue;
+      }
       if (name.IsPrefixedBy_Ascii_NoCase("mt"))
       {
         RINOK(ParseMtProp(name.Ptr(2), value, numProcessors, _numThreads));

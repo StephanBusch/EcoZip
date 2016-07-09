@@ -519,7 +519,7 @@ bool CAttr::ParseExtents(CRecordVector<CExtent> &extents, UInt64 numClustersMax,
     UInt64 vSize = 0;
     {
       unsigned i = num;
-      do vSize = (vSize << 8) | p[--i]; while(i);
+      do vSize = (vSize << 8) | p[--i]; while (i);
     }
     if (vSize == 0)
       return false;
@@ -576,20 +576,20 @@ class CInStream:
   UInt64 _physPos;
   UInt64 _curRem;
   bool _sparseMode;
-  size_t _compressedPos;
   
-  UInt64 _tags[kNumCacheChunks];
+
   unsigned _chunkSizeLog;
+  UInt64 _tags[kNumCacheChunks];
   CByteBuffer _inBuf;
   CByteBuffer _outBuf;
 public:
-  CMyComPtr<IInStream> Stream;
   UInt64 Size;
   UInt64 InitializedSize;
   unsigned BlockSizeLog;
   unsigned CompressionUnit;
-  bool InUse;
   CRecordVector<CExtent> Extents;
+  bool InUse;
+  CMyComPtr<IInStream> Stream;
 
   HRESULT SeekToPhys() { return Stream->Seek(_physPos, STREAM_SEEK_SET, NULL); }
 
@@ -597,11 +597,11 @@ public:
   HRESULT InitAndSeek(unsigned compressionUnit)
   {
     CompressionUnit = compressionUnit;
+    _chunkSizeLog = BlockSizeLog + CompressionUnit;
     if (compressionUnit != 0)
     {
       UInt32 cuSize = GetCuSize();
       _inBuf.Alloc(cuSize);
-      _chunkSizeLog = BlockSizeLog + CompressionUnit;
       _outBuf.Alloc(kNumCacheChunks << _chunkSizeLog);
     }
     for (size_t i = 0; i < kNumCacheChunks; i++)
@@ -630,24 +630,27 @@ static size_t Lznt1Dec(Byte *dest, size_t outBufLim, size_t destLen, const Byte 
   {
     if (srcLen < 2 || (destSize & 0xFFF) != 0)
       break;
-    UInt32 v = Get16(src);
-    if (v == 0)
-      break;
-    src += 2;
-    srcLen -= 2;
-    UInt32 comprSize = (v & 0xFFF) + 1;
-    if (comprSize > srcLen)
-      break;
-    srcLen -= comprSize;
-    if ((v & 0x8000) == 0)
+    UInt32 comprSize;
     {
-      if (comprSize != (1 << 12))
+      const UInt32 v = Get16(src);
+      if (v == 0)
         break;
-      memcpy(dest + destSize, src, comprSize);
-      src += comprSize;
-      destSize += comprSize;
+      src += 2;
+      srcLen -= 2;
+      comprSize = (v & 0xFFF) + 1;
+      if (comprSize > srcLen)
+        break;
+      srcLen -= comprSize;
+      if ((v & 0x8000) == 0)
+      {
+        if (comprSize != (1 << 12))
+          break;
+        memcpy(dest + destSize, src, comprSize);
+        src += comprSize;
+        destSize += comprSize;
+        continue;
+      }
     }
-    else
     {
       if (destSize + (1 << 12) > outBufLim || (src[0] & 1) != 0)
         return 0;
@@ -672,7 +675,7 @@ static size_t Lznt1Dec(Byte *dest, size_t outBufLim, size_t destLen, const Byte 
           {
             if (comprSize < 2)
               return 0;
-            UInt32 v = Get16(src + pos);
+            const UInt32 v = Get16(src + pos);
             pos += 2;
             comprSize -= 2;
 
@@ -709,9 +712,12 @@ STDMETHODIMP CInStream::Read(void *data, UInt32 size, UInt32 *processedSize)
     return (Size == _virtPos) ? S_OK: E_FAIL;
   if (size == 0)
     return S_OK;
-  UInt64 rem = Size - _virtPos;
-  if (size > rem)
-    size = (UInt32)rem;
+  {
+    const UInt64 rem = Size - _virtPos;
+    if (size > rem)
+      size = (UInt32)rem;
+  }
+
   if (_virtPos >= InitializedSize)
   {
     memset((Byte *)data, 0, size);
@@ -719,9 +725,12 @@ STDMETHODIMP CInStream::Read(void *data, UInt32 size, UInt32 *processedSize)
     *processedSize = size;
     return S_OK;
   }
-  rem = InitializedSize - _virtPos;
-  if (size > rem)
-    size = (UInt32)rem;
+
+  {
+    const UInt64 rem = InitializedSize - _virtPos;
+    if (size > rem)
+      size = (UInt32)rem;
+  }
 
   while (_curRem == 0)
   {
@@ -838,7 +847,7 @@ STDMETHODIMP CInStream::Read(void *data, UInt32 size, UInt32 *processedSize)
     }
     size_t destLenMax = GetCuSize();
     size_t destLen = destLenMax;
-    UInt64 rem = Size - (virtBlock2 << BlockSizeLog);
+    const UInt64 rem = Size - (virtBlock2 << BlockSizeLog);
     if (destLen > rem)
       destLen = (size_t)rem;
 
@@ -895,10 +904,13 @@ STDMETHODIMP CInStream::Seek(Int64 offset, UInt32 seekOrigin, UInt64 *newPositio
 static HRESULT DataParseExtents(unsigned clusterSizeLog, const CObjectVector<CAttr> &attrs,
     unsigned attrIndex, unsigned attrIndexLim, UInt64 numPhysClusters, CRecordVector<CExtent> &Extents)
 {
-  CExtent e;
-  e.Virt = 0;
-  e.Phy = kEmptyExtent;
-  Extents.Add(e);
+  {
+    CExtent e;
+    e.Virt = 0;
+    e.Phy = kEmptyExtent;
+    Extents.Add(e);
+  }
+  
   const CAttr &attr0 = attrs[attrIndex];
 
   if (attr0.AllocatedSize < attr0.Size ||
@@ -1075,20 +1087,22 @@ HRESULT CMftRec::GetStream(IInStream *mainStream, int dataIndex,
     {
       if (numNonResident != ref.Num || !attr0.IsCompressionUnitSupported())
         return S_FALSE;
-      CInStream *streamSpec = new CInStream;
-      CMyComPtr<IInStream> streamTemp = streamSpec;
-      RINOK(DataParseExtents(clusterSizeLog, DataAttrs, ref.Start, ref.Start + ref.Num, numPhysClusters, streamSpec->Extents));
-      streamSpec->Size = attr0.Size;
-      streamSpec->InitializedSize = attr0.InitializedSize;
-      streamSpec->Stream = mainStream;
-      streamSpec->BlockSizeLog = clusterSizeLog;
-      streamSpec->InUse = InUse();
-      RINOK(streamSpec->InitAndSeek(attr0.CompressionUnit));
-      *destStream = streamTemp.Detach();
+      CInStream *ss = new CInStream;
+      CMyComPtr<IInStream> streamTemp2 = ss;
+      RINOK(DataParseExtents(clusterSizeLog, DataAttrs, ref.Start, ref.Start + ref.Num, numPhysClusters, ss->Extents));
+      ss->Size = attr0.Size;
+      ss->InitializedSize = attr0.InitializedSize;
+      ss->Stream = mainStream;
+      ss->BlockSizeLog = clusterSizeLog;
+      ss->InUse = InUse();
+      RINOK(ss->InitAndSeek(attr0.CompressionUnit));
+      *destStream = streamTemp2.Detach();
       return S_OK;
     }
+  
     streamSpec->Buf = attr0.Data;
   }
+
   streamSpec->Init();
   *destStream = streamTemp.Detach();
   return S_OK;
@@ -1148,8 +1162,16 @@ bool CMftRec::Parse(Byte *p, unsigned sectorSizeLog, UInt32 numSectors, UInt32 r
       return false;
 
     if (usaOffset >= 0x30) // NTFS 3.1+
-      if (Get32(p + 0x2C) != recNumber)
-        return false;
+    {
+      UInt32 iii = Get32(p + 0x2C);
+      if (iii != recNumber)
+      {
+        // ntfs-3g probably writes 0 (that probably is incorrect value) to this field for unused records.
+        // so we support that "bad" case.
+        if (iii != 0)
+          return false;
+      }
+    }
     
     UInt16 usn = Get16(p + usaOffset);
     // PRF(printf("\nusn = %d", usn));
@@ -1683,36 +1705,40 @@ HRESULT CDatabase::Open()
   if ((mftSize >> 4) > Header.GetPhySize_Clusters())
     return S_FALSE;
 
-  UInt64 numFiles = mftSize >> RecSizeLog;
-  if (numFiles > (1 << 30))
-    return S_FALSE;
-  if (OpenCallback)
-  {
-    RINOK(OpenCallback->SetTotal(&numFiles, &mftSize));
-  }
-  
   const size_t kBufSize = (1 << 15);
   const size_t recSize = ((size_t)1 << RecSizeLog);
   if (kBufSize < recSize)
     return S_FALSE;
 
-  ByteBuf.Alloc(kBufSize);
-  Recs.ClearAndReserve((unsigned)numFiles);
+  {
+    const UInt64 numFiles = mftSize >> RecSizeLog;
+    if (numFiles > (1 << 30))
+      return S_FALSE;
+    if (OpenCallback)
+    {
+      RINOK(OpenCallback->SetTotal(&numFiles, &mftSize));
+    }
+    
+    ByteBuf.Alloc(kBufSize);
+    Recs.ClearAndReserve((unsigned)numFiles);
+  }
   
   for (UInt64 pos64 = 0;;)
   {
     if (OpenCallback)
     {
-      UInt64 numFiles = Recs.Size();
+      const UInt64 numFiles = Recs.Size();
       if ((numFiles & 0x3FF) == 0)
       {
         RINOK(OpenCallback->SetCompleted(&numFiles, &pos64));
       }
     }
     size_t readSize = kBufSize;
-    UInt64 rem = mftSize - pos64;
-    if (readSize > rem)
-      readSize = (size_t)rem;
+    {
+      const UInt64 rem = mftSize - pos64;
+      if (readSize > rem)
+        readSize = (size_t)rem;
+    }
     if (readSize < recSize)
       break;
     RINOK(ReadStream_FALSE(mftStream, ByteBuf, readSize));
@@ -1835,7 +1861,7 @@ HRESULT CDatabase::Open()
     int indexOfUnnamedStream = -1;
     if (!rec.IsDir())
     {
-      FOR_VECTOR(di, rec.DataRefs)
+      FOR_VECTOR (di, rec.DataRefs)
         if (rec.DataAttrs[rec.DataRefs[di].Start].Name.IsEmpty())
         {
           indexOfUnnamedStream = di;
@@ -1849,7 +1875,7 @@ HRESULT CDatabase::Open()
       if (i < kNumSysRecs)
       {
         needShow = false;
-        FOR_VECTOR(di, rec.DataRefs)
+        FOR_VECTOR (di, rec.DataRefs)
           if (rec.GetSize(di) != 0)
           {
             needShow = true;
@@ -1905,7 +1931,7 @@ HRESULT CDatabase::Open()
 
       unsigned numAltStreams = 0;
 
-      FOR_VECTOR(di, rec.DataRefs)
+      FOR_VECTOR (di, rec.DataRefs)
       {
         if (!rec.IsDir() && (int)di == indexOfUnnamedStream)
           continue;
@@ -2173,7 +2199,7 @@ enum
   kpidATime2
 };
 
-static const STATPROPSTG kProps[] =
+static const CStatProp kProps[] =
 {
   { NULL, kpidPath, VT_BSTR},
   { NULL, kpidSize, VT_UI8},
@@ -2181,20 +2207,20 @@ static const STATPROPSTG kProps[] =
 
   // { NULL, kpidLink, VT_BSTR},
   
-  // { (LPOLESTR)L"Link 2", kpidLink2, VT_BSTR},
-  // { (LPOLESTR)L"Link Type", kpidLinkType, VT_UI2},
+  // { "Link 2", kpidLink2, VT_BSTR},
+  // { "Link Type", kpidLinkType, VT_UI2},
   { NULL, kpidINode, VT_UI8},
  
   { NULL, kpidMTime, VT_FILETIME},
   { NULL, kpidCTime, VT_FILETIME},
   { NULL, kpidATime, VT_FILETIME},
   
-  // { (LPOLESTR)L"Record Modified", kpidRecMTime, VT_FILETIME},
+  // { "Record Modified", kpidRecMTime, VT_FILETIME},
 
-  // { (LPOLESTR)L"Modified 2", kpidMTime2, VT_FILETIME},
-  // { (LPOLESTR)L"Created 2", kpidCTime2, VT_FILETIME},
-  // { (LPOLESTR)L"Accessed 2", kpidATime2, VT_FILETIME},
-  // { (LPOLESTR)L"Record Modified 2", kpidRecMTime2, VT_FILETIME},
+  // { "Modified 2", kpidMTime2, VT_FILETIME},
+  // { "Created 2", kpidCTime2, VT_FILETIME},
+  // { "Accessed 2", kpidATime2, VT_FILETIME},
+  // { "Record Modified 2", kpidRecMTime2, VT_FILETIME},
 
   { NULL, kpidAttrib, VT_UI4},
   { NULL, kpidNumBlocks, VT_UI4},
@@ -2226,13 +2252,13 @@ enum
   kpidRecordSize = kpidUserDefined
 };
 
-static const STATPROPSTG kArcProps[] =
+static const CStatProp kArcProps[] =
 {
   { NULL, kpidVolumeName, VT_BSTR},
   { NULL, kpidFileSystem, VT_BSTR},
   { NULL, kpidClusterSize, VT_UI4},
   { NULL, kpidSectorSize, VT_UI4},
-  { (LPOLESTR)L"Record Size", kpidRecordSize, VT_UI4},
+  { "Record Size", kpidRecordSize, VT_UI4},
   { NULL, kpidHeadersSize, VT_UI8},
   { NULL, kpidCTime, VT_FILETIME},
   { NULL, kpidId, VT_UI8},
@@ -2660,7 +2686,7 @@ STDMETHODIMP CHandler::Extract(const UInt32 *indices, UInt32 numItems,
         RINOK(hres);
         if (inStream)
         {
-          HRESULT hres = copyCoder->Code(inStream, outStream, NULL, NULL, progress);
+          hres = copyCoder->Code(inStream, outStream, NULL, NULL, progress);
           if (hres != S_OK &&  hres != S_FALSE)
           {
             RINOK(hres);

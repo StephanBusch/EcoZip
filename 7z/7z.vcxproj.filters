@@ -215,9 +215,6 @@
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7z\7zFolderInStream.cpp">
       <Filter>Source Files\7Z_OBJS</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7z\7zFolderOutStream.cpp">
-      <Filter>Source Files\7Z_OBJS</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7z\7zHandler.cpp">
       <Filter>Source Files\7Z_OBJS</Filter>
     </ClCompile>
@@ -267,9 +264,6 @@
       <Filter>Source Files\CHM_OBJS</Filter>
     </ClCompile>
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\Common\CoderMixer2.cpp">
-      <Filter>Source Files\AR_COMMON_OBJS</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\Common\CrossThreadProgress.cpp">
       <Filter>Source Files\AR_COMMON_OBJS</Filter>
     </ClCompile>
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\Common\DummyOutStream.cpp">
@@ -605,10 +599,10 @@
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Crypto\HmacSha1.cpp">
       <Filter>Source Files\CRYPTO_OBJS</Filter>
     </ClCompile>
-     <ClCompile Include="..\..\7ze-src\CPP\7zip\Crypto\HmacSha256.cpp">
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Crypto\HmacSha256.cpp">
       <Filter>Source Files\CRYPTO_OBJS</Filter>
     </ClCompile>
-   <ClCompile Include="..\..\7ze-src\CPP\7zip\Crypto\MyAes.cpp">
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Crypto\MyAes.cpp">
       <Filter>Source Files\CRYPTO_OBJS</Filter>
     </ClCompile>
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Crypto\MyAesReg.cpp">
@@ -620,10 +614,10 @@
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Crypto\RandGen.cpp">
       <Filter>Source Files\CRYPTO_OBJS</Filter>
     </ClCompile>
-     <ClCompile Include="..\..\7ze-src\CPP\7zip\Crypto\Rar5Aes.cpp">
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Crypto\Rar5Aes.cpp">
       <Filter>Source Files\CRYPTO_OBJS</Filter>
     </ClCompile>
-   <ClCompile Include="..\..\7ze-src\CPP\7zip\Crypto\Rar20Crypto.cpp">
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Crypto\Rar20Crypto.cpp">
       <Filter>Source Files\CRYPTO_OBJS</Filter>
     </ClCompile>
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Crypto\RarAes.cpp">

@@ -656,7 +656,7 @@ static AString GetSectionPrefix(const AString &name)
 
 #define RINOZ(x) { int __tt = (x); if (__tt != 0) return __tt; }
 
-static int CompareFiles(const int *p1, const int *p2, void *param)
+static int CompareFiles(const unsigned *p1, const unsigned *p2, void *param)
 {
   const CObjectVector<CItem> &items = *(const CObjectVector<CItem> *)param;
   const CItem &item1 = items[*p1];
@@ -667,13 +667,15 @@ static int CompareFiles(const int *p1, const int *p2, void *param)
     return -1;
   if (isDir2)
   {
-    if (isDir1)
-      return MyCompare(*p1, *p2);
-    return 1;
+    if (!isDir1)
+      return 1;
   }
-  RINOZ(MyCompare(item1.Section, item2.Section));
-  RINOZ(MyCompare(item1.Offset, item2.Offset));
-  RINOZ(MyCompare(item1.Size, item2.Size));
+  else
+  {
+    RINOZ(MyCompare(item1.Section, item2.Section));
+    RINOZ(MyCompare(item1.Offset, item2.Offset));
+    RINOZ(MyCompare(item1.Size, item2.Size));
+  }
   return MyCompare(*p1, *p2);
 }
 
@@ -716,6 +718,19 @@ bool CFilesDatabase::Check()
   return true;
 }
 
+bool CFilesDatabase::CheckSectionRefs()
+{
+  FOR_VECTOR (i, Indices)
+  {
+    const CItem &item = Items[Indices[i]];
+    if (item.Section == 0 || item.IsDir())
+      continue;
+    if (item.Section >= Sections.Size())
+      return false;
+  }
+  return true;
+}
+
 static int inline GetLog(UInt32 num)
 {
   for (int i = 0; i < 32; i++)
@@ -731,7 +746,7 @@ HRESULT CInArchive::OpenHighLevel(IInStream *inStream, CFilesDatabase &database)
     RINOK(DecompressStream(inStream, database, kNameList));
     /* UInt16 length = */ ReadUInt16();
     UInt16 numSections = ReadUInt16();
-    for (int i = 0; i < numSections; i++)
+    for (unsigned i = 0; i < numSections; i++)
     {
       CSectionInfo section;
       UInt16 nameLen = ReadUInt16();
@@ -745,10 +760,10 @@ HRESULT CInArchive::OpenHighLevel(IInStream *inStream, CFilesDatabase &database)
     }
   }
 
-  unsigned i;
-  for (i = 1; i < database.Sections.Size(); i++)
+  unsigned si;
+  for (si = 1; si < database.Sections.Size(); si++)
   {
-    CSectionInfo &section = database.Sections[i];
+    CSectionInfo &section = database.Sections[si];
     AString sectionPrefix = GetSectionPrefix(section.Name);
     {
       // Content
@@ -766,10 +781,10 @@ HRESULT CInArchive::OpenHighLevel(IInStream *inStream, CFilesDatabase &database)
       RINOK(DecompressStream(inStream, database, transformPrefix + kTransformList));
       if ((_chunkSize & 0xF) != 0)
         return S_FALSE;
-      int numGuids = (int)(_chunkSize / 0x10);
+      unsigned numGuids = (unsigned)(_chunkSize / 0x10);
       if (numGuids < 1)
         return S_FALSE;
-      for (int i = 0; i < numGuids; i++)
+      for (unsigned i = 0; i < numGuids; i++)
       {
         CMethodInfo method;
         ReadGUID(method.Guid);
@@ -803,14 +818,17 @@ HRESULT CInArchive::OpenHighLevel(IInStream *inStream, CFilesDatabase &database)
             return S_FALSE;
           
           {
-            int n = GetLog(ReadUInt32());
+            // There is bug in VC6, if we use function call as parameter for inline function
+            UInt32 val32 = ReadUInt32();
+            int n = GetLog(val32);
             if (n < 0 || n > 16)
               return S_FALSE;
             li.ResetIntervalBits = n;
           }
           
           {
-            int n = GetLog(ReadUInt32());
+            UInt32 val32 = ReadUInt32();
+            int n = GetLog(val32);
             if (n < 0 || n > 16)
               return S_FALSE;
             li.WindowSizeBits = n;
@@ -990,6 +1008,8 @@ HRESULT CInArchive::Open2(IInStream *inStream,
         return S_OK;
       }
       RINOK(res);
+      if (!database.CheckSectionRefs())
+        HeadersError = true;
       database.LowLevel = false;
     }
     catch(...)

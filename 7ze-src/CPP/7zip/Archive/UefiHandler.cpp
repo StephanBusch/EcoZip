@@ -694,7 +694,7 @@ STDMETHODIMP CHandler::GetProperty(UInt32 index, PROPID propID, PROPVARIANT *val
   NWindows::NCOM::CPropVariant prop;
   const CItem2 &item2 = _items2[index];
   const CItem &item = _items[item2.MainIndex];
-  switch(propID)
+  switch (propID)
   {
     case kpidPath:
     {
@@ -702,9 +702,10 @@ STDMETHODIMP CHandler::GetProperty(UInt32 index, PROPID propID, PROPVARIANT *val
       int cur = item2.Parent;
       while (cur >= 0)
       {
-        const CItem2 &item2 = _items2[cur];
-        path = item2.Name + CHAR_PATH_SEPARATOR + path;
-        cur = item2.Parent;
+        const CItem2 &item3 = _items2[cur];
+        path.InsertAtFront(CHAR_PATH_SEPARATOR);
+        path.Insert(0, item3.Name);
+        cur = item3.Parent;
       }
       prop = path;
       break;
@@ -754,7 +755,7 @@ STDMETHODIMP CHandler::GetArchiveProperty(PROPID propID, PROPVARIANT *value)
 {
   COM_TRY_BEGIN
   NWindows::NCOM::CPropVariant prop;
-  switch(propID)
+  switch (propID)
   {
     case kpidMethod:
     {
@@ -1039,7 +1040,7 @@ HRESULT CHandler::ParseSections(int bufIndex, UInt32 posBase, UInt32 size, int p
     else
     {
       bool needAdd = true;
-      switch(type)
+      switch (type)
       {
         case SECTION_RAW:
         {

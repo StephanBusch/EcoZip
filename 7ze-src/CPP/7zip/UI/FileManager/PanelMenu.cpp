@@ -189,9 +189,9 @@ void CPanel::Properties()
               }
               else
               {
-                for (UInt32 i = 0; i < dataSize; i++)
+                for (UInt32 k = 0; k < dataSize; k++)
                 {
-                  Byte b = ((const Byte *)data)[i];
+                  Byte b = ((const Byte *)data)[k];
                   s += GetHex((Byte)((b >> 4) & 0xF));
                   s += GetHex((Byte)(b & 0xF));
                 }
@@ -245,8 +245,6 @@ void CPanel::Properties()
       }
     }
 
-    CMyComPtr<IGetFolderArcProps> getFolderArcProps;
-    _folder.QueryInterface(IID_IGetFolderArcProps, &getFolderArcProps);
     if (getFolderArcProps)
     {
       CMyComPtr<IFolderArcProps> getProps;
@@ -480,7 +478,7 @@ void CPanel::CreateSystemMenu(HMENU menuSpec,
     // HMENU hMenu = CreatePopupMenu();
     CMenu popupMenu;
     // CMenuDestroyer menuDestroyer(popupMenu);
-    if(!popupMenu.CreatePopup())
+    if (!popupMenu.CreatePopup())
       throw 210503;
 
     HMENU hMenu = popupMenu;

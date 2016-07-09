@@ -175,7 +175,7 @@ LRESULT CPanel::SetItemText(LVITEMW &item)
   if (item.cchTextMax <= 1)
     return 0;
   
-  const CItemProperty &property = _visibleProperties[item.iSubItem];
+  const CPropColumn &property = _visibleColumns[item.iSubItem];
   PROPID propID = property.ID;
 
   if (realIndex == kParentIndex)
@@ -465,7 +465,7 @@ void CPanel::OnNotifyActivateItems()
 
 bool CPanel::OnNotifyList(LPNMHDR header, LRESULT &result)
 {
-  switch(header->code)
+  switch (header->code)
   {
     case LVN_ITEMCHANGED:
     {
@@ -507,7 +507,7 @@ bool CPanel::OnNotifyList(LPNMHDR header, LRESULT &result)
     {
       LPNMLVKEYDOWN keyDownInfo = LPNMLVKEYDOWN(header);
       bool boolResult = OnKeyDown(keyDownInfo, result);
-      switch(keyDownInfo->wVKey)
+      switch (keyDownInfo->wVKey)
       {
         case VK_CONTROL:
         case VK_SHIFT:
@@ -602,7 +602,7 @@ bool CPanel::OnNotifyList(LPNMHDR header, LRESULT &result)
 
 bool CPanel::OnCustomDraw(LPNMLVCUSTOMDRAW lplvcd, LRESULT &result)
 {
-  switch(lplvcd->nmcd.dwDrawStage)
+  switch (lplvcd->nmcd.dwDrawStage)
   {
   case CDDS_PREPAINT :
     result = CDRF_NOTIFYITEMDRAW;

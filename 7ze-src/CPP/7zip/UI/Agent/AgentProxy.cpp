@@ -3,10 +3,16 @@
 #include "StdAfx.h"
 
 // #include <stdio.h>
+#ifdef _WIN32
+#include <wchar.h>
+#else
+#include <ctype.h>
+#endif
 
 #include "../../../../C/Sort.h"
 #include "../../../../C/CpuArch.h"
 
+#include "../../../Common/UTFConvert.h"
 #include "../../../Common/Wildcard.h"
 
 #include "../../../Windows/PropVariant.h"
@@ -28,10 +34,10 @@ int CProxyArc::FindSubDir(unsigned dirIndex, const wchar_t *name, unsigned &inse
       return -1;
     }
     unsigned mid = (left + right) / 2;
-    unsigned dirIndex = subDirs[mid];
-    int compare = CompareFileNames(name, Dirs[dirIndex].Name);
+    unsigned dirIndex2 = subDirs[mid];
+    int compare = CompareFileNames(name, Dirs[dirIndex2].Name);
     if (compare == 0)
-      return dirIndex;
+      return dirIndex2;
     if (compare < 0)
       right = mid;
     else
@@ -242,7 +248,8 @@ HRESULT CProxyArc::Load(const CArc &arc, IProgress *progress)
     unsigned len = 0;
     bool isPtrName = false;
 
-    #ifdef MY_CPU_LE
+    #if defined(MY_CPU_LE) && defined(_WIN32)
+    // it works only if (sizeof(wchar_t) == 2)
     if (arc.GetRawProps)
     {
       const void *p;
@@ -297,14 +304,25 @@ HRESULT CProxyArc::Load(const CArc &arc, IProgress *progress)
     */
 
     unsigned namePos = 0;
+
+    unsigned numLevels = 0;
+
     for (unsigned j = 0; j < len; j++)
     {
       wchar_t c = s[j];
       if (c == WCHAR_PATH_SEPARATOR || c == L'/')
       {
-        name.SetFrom(s + namePos, j - namePos);
-        curItem = AddDir(curItem, -1, name);
+        const unsigned kLevelLimit = 1 << 10;
+        if (numLevels <= kLevelLimit)
+        {
+          if (numLevels == kLevelLimit)
+            name.SetFromAscii("[LONG_PATH]");
+          else
+            name.SetFrom(s + namePos, j - namePos);
+          curItem = AddDir(curItem, -1, name);
+        }
         namePos = j + 1;
+        numLevels++;
       }
     }
 
@@ -555,7 +573,10 @@ HRESULT CProxyArc2::Load(const CArc &arc, IProgress *progress)
   }
 
   Files.Alloc(numItems);
-  
+
+  UString tempUString;
+  AString tempAString;
+
   UInt32 i;
   for (i = 0; i < numItems; i++)
   {
@@ -567,12 +588,12 @@ HRESULT CProxyArc2::Load(const CArc &arc, IProgress *progress)
     
     CProxyFile2 &file = Files[i];
     
-    #ifdef MY_CPU_LE
     const void *p;
     UInt32 size;
     UInt32 propType;
     RINOK(arc.GetRawProps->GetRawProp(i, kpidName, &p, &size, &propType));
     
+    #ifdef MY_CPU_LE
     if (p && propType == PROP_DATA_TYPE_wchar_t_PTR_Z_LE)
     {
       file.Name = (const wchar_t *)p;
@@ -582,6 +603,16 @@ HRESULT CProxyArc2::Load(const CArc &arc, IProgress *progress)
     }
     else
     #endif
+    if (p && propType == NPropDataType::kUtf8z)
+    {
+      tempAString = (const char *)p;
+      ConvertUTF8ToUnicode(tempAString, tempUString);
+      file.NameLen = tempUString.Len();
+      file.Name = new wchar_t[file.NameLen + 1];
+      file.NeedDeleteName = true;
+      wmemcpy((wchar_t *)file.Name, tempUString.Ptr(), file.NameLen + 1);
+    }
+    else
     {
       NCOM::CPropVariant prop;
       RINOK(arc.Archive->GetProperty(i, kpidName, &prop));
@@ -595,7 +626,7 @@ HRESULT CProxyArc2::Load(const CArc &arc, IProgress *progress)
       file.NameLen = MyStringLen(s);
       file.Name = new wchar_t[file.NameLen + 1];
       file.NeedDeleteName = true;
-      MyStringCopy((wchar_t *)file.Name, s);
+      wmemcpy((wchar_t *)file.Name, s, file.NameLen + 1);
     }
     
     UInt32 parent = (UInt32)(Int32)-1;

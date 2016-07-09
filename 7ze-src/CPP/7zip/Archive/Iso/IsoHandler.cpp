@@ -323,7 +323,7 @@ STDMETHODIMP CHandler::Extract(const UInt32 *indices, UInt32 numItems,
       {
         lps->InSize = lps->OutSize = currentTotalSize + offset;
         const CDir &item2 = ref.Dir->_subItems[ref.Index + e];
-        RINOK(_stream->Seek((UInt64)item2.ExtentLocation * _archive.BlockSize, STREAM_SEEK_SET, NULL));
+        RINOK(_stream->Seek((UInt64)item2.ExtentLocation * kBlockSize, STREAM_SEEK_SET, NULL));
         streamSpec->Init(item2.Size);
         RINOK(copyCoder->Code(inStream, realOutStream, NULL, NULL, progress));
         if (copyCoderSpec->TotalSize != item2.Size)
@@ -336,7 +336,7 @@ STDMETHODIMP CHandler::Extract(const UInt32 *indices, UInt32 numItems,
     }
     else
     {
-      RINOK(_stream->Seek(blockIndex * _archive.BlockSize, STREAM_SEEK_SET, NULL));
+      RINOK(_stream->Seek((UInt64)blockIndex * kBlockSize, STREAM_SEEK_SET, NULL));
       streamSpec->Init(currentItemSize);
       RINOK(copyCoder->Code(inStream, realOutStream, NULL, NULL, progress));
       if (copyCoderSpec->TotalSize != currentItemSize)
@@ -358,7 +358,7 @@ STDMETHODIMP CHandler::GetStream(UInt32 index, ISequentialInStream **stream)
   UInt64 blockIndex;
   UInt64 currentItemSize;
   
-  if (index < (UInt32)_archive.Refs.Size())
+  if (index < _archive.Refs.Size())
   {
     const CRef &ref = _archive.Refs[index];
     const CDir &item = ref.Dir->_subItems[ref.Index];
@@ -375,14 +375,14 @@ STDMETHODIMP CHandler::GetStream(UInt32 index, ISequentialInStream **stream)
       UInt64 virtOffset = 0;
       for (UInt32 i = 0; i < ref.NumExtents; i++)
       {
-        const CDir &item = ref.Dir->_subItems[ref.Index + i];
-        if (item.Size == 0)
+        const CDir &item2 = ref.Dir->_subItems[ref.Index + i];
+        if (item2.Size == 0)
           continue;
         CSeekExtent se;
-        se.Phy = (UInt64)item.ExtentLocation * _archive.BlockSize;
+        se.Phy = (UInt64)item2.ExtentLocation * kBlockSize;
         se.Virt = virtOffset;
         extentStreamSpec->Extents.Add(se);
-        virtOffset += item.Size;
+        virtOffset += item2.Size;
       }
       if (virtOffset != ref.TotalSize)
         return S_FALSE;
@@ -394,6 +394,7 @@ STDMETHODIMP CHandler::GetStream(UInt32 index, ISequentialInStream **stream)
       *stream = extentStream.Detach();
       return S_OK;
     }
+    
     currentItemSize = item.Size;
     blockIndex = item.ExtentLocation;
   }
@@ -405,7 +406,7 @@ STDMETHODIMP CHandler::GetStream(UInt32 index, ISequentialInStream **stream)
     blockIndex = be.LoadRBA;
   }
   
-  return CreateLimitedInStream(_stream, blockIndex * _archive.BlockSize, currentItemSize, stream);
+  return CreateLimitedInStream(_stream, (UInt64)blockIndex * kBlockSize, currentItemSize, stream);
   COM_TRY_END
 }
 

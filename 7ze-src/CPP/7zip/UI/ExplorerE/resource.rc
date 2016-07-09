@@ -1,8 +1,8 @@
 #include "../../MyVersionInfo.rc"
 #include "resource2.rc"
 
-MY_VERSION_INFO_DLL("7-ZipPro Shell Extension", "7-zipPro")
+MY_VERSION_INFO_DLL("EcoZip Shell Extension", "EcoZip")
 
 #ifndef UNDER_CE
-1 24 MOVEABLE PURE "7-zip.dll.manifest"
+1 24 MOVEABLE PURE "EcoZip.dll.manifest"
 #endif

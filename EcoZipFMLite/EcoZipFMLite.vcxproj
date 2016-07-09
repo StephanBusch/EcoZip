@@ -1,0 +1,554 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0B3D56CE-54C1-469F-96DE-78FD4B2E0DD5}</ProjectGuid>
+    <RootNamespace>EcoZipFMLite</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)\..\7ze-src;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)\..\7ze-src;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)\..\7ze-src;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)\..\7ze-src;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>__USE_SSE_INTRIN__;PROJ_7ZIPEX;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;LANG;NEW_FOLDER_INTERFACE;EXTERNAL_CODECS;_7ZIP_LARGE_PAGES;WIN_LONG_PATH;SUPPORT_DEVICE_FILE;LIBBSC_OPENMP_SUPPORT;_LARGEFILE64_SOURCE;_FILE_OFFSET_BITS=64;WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>comctl32.lib;htmlhelp.lib;Mpr.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;uafxcwd.lib;libcmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>__USE_SSE_INTRIN__;PROJ_7ZIPEX;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;LANG;NEW_FOLDER_INTERFACE;EXTERNAL_CODECS;_7ZIP_LARGE_PAGES;WIN_LONG_PATH;SUPPORT_DEVICE_FILE;LIBBSC_OPENMP_SUPPORT;_LARGEFILE64_SOURCE;_FILE_OFFSET_BITS=64;WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>comctl32.lib;htmlhelp.lib;Mpr.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;uafxcwd.lib;libcmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <MASM>
+      <AdditionalOptions>/Dx64 %(AdditionalOptions)</AdditionalOptions>
+    </MASM>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>__USE_SSE_INTRIN__;PROJ_7ZIPEX;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;LANG;NEW_FOLDER_INTERFACE;EXTERNAL_CODECS;_7ZIP_LARGE_PAGES;WIN_LONG_PATH;SUPPORT_DEVICE_FILE;LIBBSC_OPENMP_SUPPORT;_LARGEFILE64_SOURCE;_FILE_OFFSET_BITS=64;WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>comctl32.lib;htmlhelp.lib;Mpr.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;uafxcw.lib;libcmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers />
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>__USE_SSE_INTRIN__;PROJ_7ZIPEX;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;LANG;NEW_FOLDER_INTERFACE;EXTERNAL_CODECS;_7ZIP_LARGE_PAGES;WIN_LONG_PATH;SUPPORT_DEVICE_FILE;LIBBSC_OPENMP_SUPPORT;_LARGEFILE64_SOURCE;_FILE_OFFSET_BITS=64;WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>comctl32.lib;htmlhelp.lib;Mpr.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;uafxcw.lib;libcmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <MASM>
+      <AdditionalOptions>/Dx64 %(AdditionalOptions)</AdditionalOptions>
+    </MASM>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\AltStreamsFolder.h" />
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FilePlugins.h" />
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\EnumFormatEtc.h" />
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FormatUtils.h" />
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FSDrives.h" />
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FSFolder.h" />
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\HelpUtils.h" />
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\IFolder.h" />
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\LangUtils.h" />
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\PropertyName.h" />
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\RegistryPlugins.h" />
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\StringUtils.h" />
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\SysIconUtils.h" />
+    <ClInclude Include="..\..\7ze-src\CPP\7zip\UI\FileManager\TextPairs.h" />
+    <ClInclude Include="..\EcoZipFM\EcoZipFM.h" />
+    <ClInclude Include="..\EcoZipFM\EcoZipFMDlg.h" />
+    <ClInclude Include="..\EcoZipFM\BCMenu.h" />
+    <ClInclude Include="..\EcoZipFM\Bench.h" />
+    <ClInclude Include="..\EcoZipFM\BenchmarkDialog.h" />
+    <ClInclude Include="..\EcoZipFM\BtnST.h" />
+    <ClInclude Include="..\EcoZipFM\CircularProgressCtrl.h" />
+    <ClInclude Include="..\EcoZipFM\ColumnTreeCtrl.h" />
+    <ClInclude Include="..\EcoZipFM\ComboDialog.h" />
+    <ClInclude Include="..\EcoZipFM\CompressCall.h" />
+    <ClInclude Include="..\EcoZipFM\CompressDialog.h" />
+    <ClInclude Include="..\EcoZipFM\ContentsView.h" />
+    <ClInclude Include="..\EcoZipFM\CopyDialog.h" />
+    <ClInclude Include="..\EcoZipFM\DetailView.h" />
+    <ClInclude Include="..\EcoZipFM\EditPage.h" />
+    <ClInclude Include="..\EcoZipFM\ExtractCallback.h" />
+    <ClInclude Include="..\EcoZipFM\ExtractDialog.h" />
+    <ClInclude Include="..\EcoZipFM\ExtractGUI.h" />
+    <ClInclude Include="..\EcoZipFM\FileFolderPluginOpen.h" />
+    <ClInclude Include="..\EcoZipFM\FileManagerDlg.h" />
+    <ClInclude Include="..\EcoZipFM\FMDropTarget.h" />
+    <ClInclude Include="..\EcoZipFM\FoldersPage.h" />
+    <ClInclude Include="..\EcoZipFM\HashGUI.h" />
+    <ClInclude Include="..\EcoZipFM\ImageUtils.h" />
+    <ClInclude Include="..\EcoZipFM\LangPage.h" />
+    <ClInclude Include="..\EcoZipFM\LoadCodecs.h" />
+    <ClInclude Include="..\EcoZipFM\MenuPage.h" />
+    <ClInclude Include="..\EcoZipFM\Messages.h" />
+    <ClInclude Include="..\EcoZipFM\FMUtils.h" />
+    <ClInclude Include="..\EcoZipFM\MessagesDialog.h" />
+    <ClInclude Include="..\EcoZipFM\MyLoadMenu.h" />
+    <ClInclude Include="..\EcoZipFM\NullFrame.h" />
+    <ClInclude Include="..\EcoZipFM\NuonImg.h" />
+    <ClInclude Include="..\EcoZipFM\OpenCallback.h" />
+    <ClInclude Include="..\EcoZipFM\OverwriteDialog.h" />
+    <ClInclude Include="..\EcoZipFM\PanelCopyThread.h" />
+    <ClInclude Include="..\EcoZipFM\PasswordDialog.h" />
+    <ClInclude Include="..\EcoZipFM\PluginInfoDlg.h" />
+    <ClInclude Include="..\EcoZipFM\PluginsPage.h" />
+    <ClInclude Include="..\EcoZipFM\ProgressDialog2.h" />
+    <ClInclude Include="..\EcoZipFM\RegistryAssociations.h" />
+    <ClInclude Include="..\EcoZipFM\RegistryPath.h" />
+    <ClInclude Include="..\EcoZipFM\Resource.h" />
+    <ClInclude Include="..\EcoZipFM\RootFolder.h" />
+    <ClInclude Include="..\EcoZipFM\SettingsPage.h" />
+    <ClInclude Include="..\EcoZipFM\SplitDialog.h" />
+    <ClInclude Include="..\EcoZipFM\SplitUtils.h" />
+    <ClInclude Include="..\EcoZipFM\stdafx.h" />
+    <ClInclude Include="..\EcoZipFM\Synchronization.h" />
+    <ClInclude Include="..\EcoZipFM\SystemPage.h" />
+    <ClInclude Include="..\EcoZipFM\targetver.h" />
+    <ClInclude Include="..\EcoZipFM\FolderView.h" />
+    <ClInclude Include="..\EcoZipFM\ThreadFolderOperations.h" />
+    <ClInclude Include="..\EcoZipFM\UpdateCallback100.h" />
+    <ClInclude Include="..\EcoZipFM\UpdateCallbackGUI.h" />
+    <ClInclude Include="..\EcoZipFM\UpdateCallbackGUI2.h" />
+    <ClInclude Include="..\EcoZipFM\UpdateGUI.h" />
+    <ClInclude Include="..\EcoZipFM\WICImagingFactory.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\CreateCoder.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\CWrappers.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\FilePathAutoRename.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\FileStreams.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\FilterCoder.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\InBuffer.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\InOutTempBuffer.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\LimitedStreams.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\LockedStream.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\MemBlocks.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\MethodId.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\MethodProps.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\OffsetStream.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\OutBuffer.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\OutMemStream.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\ProgressMt.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\ProgressUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\PropId.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\StreamBinder.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\StreamObjects.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\StreamUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\UniqBlocks.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Common\VirtThread.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\CopyCoder.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\Compress\CopyRegister.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Agent\Agent.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Agent\AgentOut.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Agent\AgentProxy.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Agent\ArchiveFolder.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Agent\ArchiveFolderOpen.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Agent\ArchiveFolderOut.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Agent\UpdateCallbackAgent.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ArchiveCommandLine.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ArchiveExtractCallback.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ArchiveName.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ArchiveOpenCallback.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\DefaultName.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\EnumDirItems.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\Extract.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ExtractingFilePath.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\HashCalc.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\OpenArchive.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\PropIDUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\SetProperties.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\SortUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\TempFiles.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\Update.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\UpdateAction.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\UpdateCallback.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\UpdatePair.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\UpdateProduce.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\WorkDir.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\Common\ZipRegistry.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\ExplorerE\ContextMenu.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\ExplorerE\MyMessages.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\ExplorerE\RegistryContextMenu.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\AltStreamsFolder.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FilePlugins.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\ClassDefs.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\EnumFormatEtc.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FormatUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FSDrives.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FSFolder.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\FSFolderCopy.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\HelpUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\LangUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\PropertyName.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\RegistryPlugins.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\StringUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\SysIconUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\TextPairs.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\7zip\UI\FileManager\RegistryUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\CommandLineParser.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\CRC.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\CrcReg.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\DynLimBuf.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\IntToString.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\Lang.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\ListFileUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\MyMap.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\MyString.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\MyXml.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\Random.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\Sha1Reg.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\StringConvert.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\StringToInt.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\UTFConvert.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Common\Wildcard.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Clipboard.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\CommonDialog.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\DLL.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\ErrorMsg.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileDir.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileFind.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileIO.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileLink.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileName.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\FileSystem.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\MemoryGlobal.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\MemoryLock.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Menu.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Net.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\ProcessUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\PropVariant.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\PropVariantConv.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\PropVariantUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Registry.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\ResourceString.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\SecurityUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\Shell.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\System.cpp" />
+    <ClCompile Include="..\..\7ze-src\CPP\Windows\TimeUtils.cpp" />
+    <ClCompile Include="..\..\7ze-src\C\7zCrc.c" />
+    <ClCompile Include="..\..\7ze-src\C\Alloc.c" />
+    <ClCompile Include="..\..\7ze-src\C\CpuArch.c" />
+    <ClCompile Include="..\..\7ze-src\C\Sha1.c" />
+    <ClCompile Include="..\..\7ze-src\C\Sort.c" />
+    <ClCompile Include="..\..\7ze-src\C\Threads.c" />
+    <ClCompile Include="..\EcoZipFM\EcoZipFM.cpp" />
+    <ClCompile Include="..\EcoZipFM\EcoZipFMDlg.cpp" />
+    <ClCompile Include="..\EcoZipFM\BCMenu.cpp" />
+    <ClCompile Include="..\EcoZipFM\Bench.cpp" />
+    <ClCompile Include="..\EcoZipFM\BenchmarkDialog.cpp" />
+    <ClCompile Include="..\EcoZipFM\BtnST.cpp" />
+    <ClCompile Include="..\EcoZipFM\CircularProgressCtrl.cpp" />
+    <ClCompile Include="..\EcoZipFM\ColumnTreeCtrl.cpp" />
+    <ClCompile Include="..\EcoZipFM\ComboDialog.cpp" />
+    <ClCompile Include="..\EcoZipFM\CompressCall2.cpp" />
+    <ClCompile Include="..\EcoZipFM\CompressDialog.cpp" />
+    <ClCompile Include="..\EcoZipFM\ContentsView.cpp" />
+    <ClCompile Include="..\EcoZipFM\CopyDialog.cpp" />
+    <ClCompile Include="..\EcoZipFM\DetailView.cpp" />
+    <ClCompile Include="..\EcoZipFM\EditPage.cpp" />
+    <ClCompile Include="..\EcoZipFM\ExtractCallback.cpp" />
+    <ClCompile Include="..\EcoZipFM\ExtractDialog.cpp" />
+    <ClCompile Include="..\EcoZipFM\ExtractGUI.cpp" />
+    <ClCompile Include="..\EcoZipFM\FileFolderPluginOpen.cpp" />
+    <ClCompile Include="..\EcoZipFM\FileManagerDlg.cpp" />
+    <ClCompile Include="..\EcoZipFM\FMDropTarget.cpp" />
+    <ClCompile Include="..\EcoZipFM\FoldersPage.cpp" />
+    <ClCompile Include="..\EcoZipFM\FolderView.cpp" />
+    <ClCompile Include="..\EcoZipFM\HashGUI.cpp" />
+    <ClCompile Include="..\EcoZipFM\ImageUtils.cpp" />
+    <ClCompile Include="..\EcoZipFM\FMUtils.cpp" />
+    <ClCompile Include="..\EcoZipFM\LangPage.cpp" />
+    <ClCompile Include="..\EcoZipFM\LoadCodecs.cpp" />
+    <ClCompile Include="..\EcoZipFM\MenuPage.cpp" />
+    <ClCompile Include="..\EcoZipFM\MessagesDialog.cpp" />
+    <ClCompile Include="..\EcoZipFM\MyLoadMenu.cpp" />
+    <ClCompile Include="..\EcoZipFM\NetFolder.cpp" />
+    <ClCompile Include="..\EcoZipFM\NullFrame.cpp" />
+    <ClCompile Include="..\EcoZipFM\NuonImg.cpp" />
+    <ClCompile Include="..\EcoZipFM\OpenCallback.cpp" />
+    <ClCompile Include="..\EcoZipFM\OptionsDialog.cpp" />
+    <ClCompile Include="..\EcoZipFM\OverwriteDialog.cpp" />
+    <ClCompile Include="..\EcoZipFM\PanelCopy.cpp" />
+    <ClCompile Include="..\EcoZipFM\PanelCopyThread.cpp" />
+    <ClCompile Include="..\EcoZipFM\PanelCrc.cpp" />
+    <ClCompile Include="..\EcoZipFM\PanelDrag.cpp" />
+    <ClCompile Include="..\EcoZipFM\PanelFolderChange.cpp" />
+    <ClCompile Include="..\EcoZipFM\PanelItemOpen.cpp" />
+    <ClCompile Include="..\EcoZipFM\PanelItems.cpp" />
+    <ClCompile Include="..\EcoZipFM\PanelListNotify.cpp" />
+    <ClCompile Include="..\EcoZipFM\PanelMenu.cpp" />
+    <ClCompile Include="..\EcoZipFM\PanelOperations.cpp" />
+    <ClCompile Include="..\EcoZipFM\PanelSelect.cpp" />
+    <ClCompile Include="..\EcoZipFM\PanelSort.cpp" />
+    <ClCompile Include="..\EcoZipFM\PanelSplitFile.cpp" />
+    <ClCompile Include="..\EcoZipFM\PasswordDialog.cpp" />
+    <ClCompile Include="..\EcoZipFM\PluginInfoDlg.cpp" />
+    <ClCompile Include="..\EcoZipFM\PluginsPage.cpp" />
+    <ClCompile Include="..\EcoZipFM\ProgressDialog2.cpp" />
+    <ClCompile Include="..\EcoZipFM\RegistryAssociations.cpp" />
+    <ClCompile Include="..\EcoZipFM\RootFolder.cpp" />
+    <ClCompile Include="..\EcoZipFM\SettingsPage.cpp" />
+    <ClCompile Include="..\EcoZipFM\SplitDialog.cpp" />
+    <ClCompile Include="..\EcoZipFM\SplitUtils.cpp" />
+    <ClCompile Include="..\EcoZipFM\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\EcoZipFM\Synchronization.cpp" />
+    <ClCompile Include="..\EcoZipFM\SystemPage.cpp" />
+    <ClCompile Include="..\EcoZipFM\ThreadFolderOperations.cpp" />
+    <ClCompile Include="..\EcoZipFM\UpdateCallback100.cpp" />
+    <ClCompile Include="..\EcoZipFM\UpdateCallbackGUI.cpp" />
+    <ClCompile Include="..\EcoZipFM\UpdateCallbackGUI2.cpp" />
+    <ClCompile Include="..\EcoZipFM\UpdateGUI.cpp" />
+    <ClCompile Include="..\EcoZipFM\WICImagingFactory.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="..\..\7ze-src\Asm\x86\7zCrcOpt.asm">
+      <FileType>Document</FileType>
+    </MASM>
+    <MASM Include="..\..\7ze-src\Asm\x86\AesOpt.asm">
+      <FileType>Document</FileType>
+    </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\EcoZipFM\EcoZipFM.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\EcoZipFM\res\MyEcoZipFM.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\EcoZipFM\res\EcoZipFM.ico" />
+    <Image Include="..\EcoZipFM\res\AddToArchive.png" />
+    <Image Include="..\EcoZipFM\res\AddToArchiveH.png" />
+    <Image Include="..\EcoZipFM\res\arrow.png" />
+    <Image Include="..\EcoZipFM\res\Benchmark.png" />
+    <Image Include="..\EcoZipFM\res\BenchmarkH.png" />
+    <Image Include="..\EcoZipFM\res\bottom.png" />
+    <Image Include="..\EcoZipFM\res\btn-background.png" />
+    <Image Include="..\EcoZipFM\res\btn-cancel.png" />
+    <Image Include="..\EcoZipFM\res\btn-pause.png" />
+    <Image Include="..\EcoZipFM\res\Close.png" />
+    <Image Include="..\EcoZipFM\res\CloseH.png" />
+    <Image Include="..\EcoZipFM\res\CopyTo.png" />
+    <Image Include="..\EcoZipFM\res\CopyToH.png" />
+    <Image Include="..\EcoZipFM\res\Delete.png" />
+    <Image Include="..\EcoZipFM\res\DeleteH.png" />
+    <Image Include="..\EcoZipFM\res\DlgBkgnd.bmp" />
+    <Image Include="..\EcoZipFM\res\down_arrow.png" />
+    <Image Include="..\EcoZipFM\res\down_arrow_h.png" />
+    <Image Include="..\EcoZipFM\res\eco-large-icon.png" />
+    <Image Include="..\EcoZipFM\res\ExtracFiles.png" />
+    <Image Include="..\EcoZipFM\res\ExtracFilesH.png" />
+    <Image Include="..\EcoZipFM\res\level1.png" />
+    <Image Include="..\EcoZipFM\res\level2.png" />
+    <Image Include="..\EcoZipFM\res\log-background.png" />
+    <Image Include="..\EcoZipFM\res\Logo.png" />
+    <Image Include="..\EcoZipFM\res\Maximize.png" />
+    <Image Include="..\EcoZipFM\res\MaximizeH.png" />
+    <Image Include="..\EcoZipFM\res\Menu.png" />
+    <Image Include="..\EcoZipFM\res\MenuH.png" />
+    <Image Include="..\EcoZipFM\res\MenuLogo.bmp" />
+    <Image Include="..\EcoZipFM\res\Minimize.png" />
+    <Image Include="..\EcoZipFM\res\MinimizeH.png" />
+    <Image Include="..\EcoZipFM\res\MoveTo.png" />
+    <Image Include="..\EcoZipFM\res\MoveToH.png" />
+    <Image Include="..\EcoZipFM\res\navbar.png" />
+    <Image Include="..\EcoZipFM\res\nav_backward.png" />
+    <Image Include="..\EcoZipFM\res\nav_backward_h.png" />
+    <Image Include="..\EcoZipFM\res\nav_forward.png" />
+    <Image Include="..\EcoZipFM\res\nav_forward_h.png" />
+    <Image Include="..\EcoZipFM\res\nav_up.png" />
+    <Image Include="..\EcoZipFM\res\nav_up_h.png" />
+    <Image Include="..\EcoZipFM\res\perf-background.png" />
+    <Image Include="..\EcoZipFM\res\perf-memo.png" />
+    <Image Include="..\EcoZipFM\res\progress_num_18.png" />
+    <Image Include="..\EcoZipFM\res\progress_num_22.png" />
+    <Image Include="..\EcoZipFM\res\Properties.png" />
+    <Image Include="..\EcoZipFM\res\PropertiesH.png" />
+    <Image Include="..\EcoZipFM\res\rb_corner.png" />
+    <Image Include="..\EcoZipFM\res\Skin.png" />
+    <Image Include="..\EcoZipFM\res\SkinH.png" />
+    <Image Include="..\EcoZipFM\res\status-background.png" />
+    <Image Include="..\EcoZipFM\res\status-hr.png" />
+    <Image Include="..\EcoZipFM\res\TestArchive.png" />
+    <Image Include="..\EcoZipFM\res\TestArchiveH.png" />
+    <Image Include="..\EcoZipFM\res\time-background.png" />
+    <Image Include="..\EcoZipFM\res\time-foreground.png" />
+    <Image Include="..\EcoZipFM\res\Title.png" />
+    <Image Include="..\EcoZipFM\res\toolbar.bmp" />
+    <Image Include="..\EcoZipFM\res\view_list.png" />
+    <Image Include="..\EcoZipFM\res\view_list_h.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\EcoZipFM\res\ALDO PC.TTF" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="..\EcoZipFM\EcoZipFM.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

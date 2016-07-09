@@ -169,7 +169,6 @@
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7ze\7zeEncode.cpp" />
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7ze\7zeExtract.cpp" />
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7ze\7zeFolderInStream.cpp" />
-    <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7ze\7zeFolderOutStream.cpp" />
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7ze\7zeGroup.cpp" />
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7ze\7zeHandler.cpp" />
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7ze\7zeHandlerOut.cpp" />

@@ -133,15 +133,23 @@ bool CHeader::Parse(const Byte *p)
     default: return false;
   }
   {
-    int s = GetLog(Get16(p + 11));
-    if (s < 9 || s > 12)
-      return false;
-    SectorSizeLog = (Byte)s;
-    s = GetLog(p[13]);
-    if (s < 0)
-      return false;
-    SectorsPerClusterLog = (Byte)s;
+    {
+      UInt32 val32 = Get16(p + 11);
+      int s = GetLog(val32);
+      if (s < 9 || s > 12)
+        return false;
+      SectorSizeLog = (Byte)s;
+    }
+    {
+      UInt32 val32 = p[13];
+      int s = GetLog(val32);
+      if (s < 0)
+        return false;
+      SectorsPerClusterLog = (Byte)s;
+    }
     ClusterSizeLog = (Byte)(SectorSizeLog + SectorsPerClusterLog);
+    if (ClusterSizeLog > 24)
+      return false;
   }
 
   NumReservedSectors = Get16(p + 14);
@@ -152,10 +160,13 @@ bool CHeader::Parse(const Byte *p)
   if (NumFats < 1 || NumFats > 4)
     return false;
 
+  // we also support images that contain 0 in offset field.
+  bool isOkOffset = (codeOffset == 0 || (p[0] == 0xEB && p[1] == 0));
+
   UInt16 numRootDirEntries = Get16(p + 17);
   if (numRootDirEntries == 0)
   {
-    if (codeOffset < 90)
+    if (codeOffset < 90 && !isOkOffset)
       return false;
     NumFatBits = 32;
     NumRootDirSectors = 0;
@@ -163,7 +174,7 @@ bool CHeader::Parse(const Byte *p)
   else
   {
     // Some FAT12s don't contain VolFields
-    if (codeOffset < 62 - 24)
+    if (codeOffset < 62 - 24 && !isOkOffset)
       return false;
     NumFatBits = 0;
     UInt32 mask = (1 << (SectorSizeLog - 5)) - 1;
@@ -805,7 +816,7 @@ enum
   // kpidFileSysType
 };
 
-static const STATPROPSTG kArcProps[] =
+static const CStatProp kArcProps[] =
 {
   { NULL, kpidFileSystem, VT_BSTR},
   { NULL, kpidClusterSize, VT_UI4},
@@ -814,12 +825,12 @@ static const STATPROPSTG kArcProps[] =
   { NULL, kpidMTime, VT_FILETIME},
   { NULL, kpidVolumeName, VT_BSTR},
 
-  { (LPOLESTR)L"FATs", kpidNumFats, VT_UI4},
+  { "FATs", kpidNumFats, VT_UI4},
   { NULL, kpidSectorSize, VT_UI4},
   { NULL, kpidId, VT_UI4},
-  // { (LPOLESTR)L"OEM Name", kpidOemName, VT_BSTR},
-  // { (LPOLESTR)L"Volume Name", kpidVolName, VT_BSTR},
-  // { (LPOLESTR)L"File System Type", kpidFileSysType, VT_BSTR}
+  // { "OEM Name", kpidOemName, VT_BSTR},
+  // { "Volume Name", kpidVolName, VT_BSTR},
+  // { "File System Type", kpidFileSysType, VT_BSTR}
   // { NULL, kpidSectorsPerTrack, VT_UI4},
   // { NULL, kpidNumHeads, VT_UI4},
   // { NULL, kpidHiddenSectors, VT_UI4}
@@ -858,7 +869,7 @@ STDMETHODIMP CHandler::GetArchiveProperty(PROPID propID, PROPVARIANT *value)
 {
   COM_TRY_BEGIN
   NWindows::NCOM::CPropVariant prop;
-  switch(propID)
+  switch (propID)
   {
     case kpidFileSystem:
     {
@@ -897,7 +908,7 @@ STDMETHODIMP CHandler::GetProperty(UInt32 index, PROPID propID, PROPVARIANT *val
   COM_TRY_BEGIN
   NWindows::NCOM::CPropVariant prop;
   const CItem &item = Items[index];
-  switch(propID)
+  switch (propID)
   {
     case kpidPath: prop = GetItemPath(index); break;
     case kpidShortName: prop = item.GetShortName(); break;

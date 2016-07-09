@@ -1,4 +1,4 @@
-PROG = 7-zip.dll
+PROG = EcoZip.dll
 DEF_FILE = Explorer.def
 CFLAGS = $(CFLAGS) \
   -DLANG \
@@ -14,7 +14,6 @@ EXPLORER_OBJS = \
   $O\DllExportsExplorer.obj \
   $O\ContextMenu.obj \
   $O\MyMessages.obj \
-  $O\RegistryContextMenu.obj \
 
 COMMON_OBJS = \
   $O\IntToString.obj \

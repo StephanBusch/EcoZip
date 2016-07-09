@@ -8,6 +8,7 @@
 #include "../../../C/Xz.h"
 
 #include "../../Common/ComTry.h"
+#include "../../Common/MyLinux.h"
 #include "../../Common/IntToString.h"
 #include "../../Common/StringConvert.h"
 
@@ -76,14 +77,6 @@ static const char * const k_Methods[] =
 static const UInt32 kMetadataBlockSizeLog = 13;
 static const UInt32 kMetadataBlockSize = (1 << kMetadataBlockSizeLog);
 
-#define MY_S_IFIFO  0x1000
-#define MY_S_IFCHR  0x2000
-#define MY_S_IFDIR  0x4000
-#define MY_S_IFBLK  0x6000
-#define MY_S_IFREG  0x8000
-#define MY_S_IFLNK  0xA000
-#define MY_S_IFSOCK 0xC000
-
 enum
 {
   kType_IPC,
@@ -99,8 +92,8 @@ enum
 static const UInt32 k_TypeToMode[] =
 {
   0,
-  MY_S_IFDIR, MY_S_IFREG, MY_S_IFLNK, MY_S_IFBLK, MY_S_IFCHR, MY_S_IFIFO, MY_S_IFSOCK,
-  MY_S_IFDIR, MY_S_IFREG, MY_S_IFLNK, MY_S_IFBLK, MY_S_IFCHR, MY_S_IFIFO, MY_S_IFSOCK
+  MY_LIN_S_IFDIR, MY_LIN_S_IFREG, MY_LIN_S_IFLNK, MY_LIN_S_IFBLK, MY_LIN_S_IFCHR, MY_LIN_S_IFIFO, MY_LIN_S_IFSOCK,
+  MY_LIN_S_IFDIR, MY_LIN_S_IFREG, MY_LIN_S_IFLNK, MY_LIN_S_IFBLK, MY_LIN_S_IFCHR, MY_LIN_S_IFIFO, MY_LIN_S_IFSOCK
 };
 
 
@@ -303,23 +296,25 @@ struct CNode
 
 UInt32 CNode::Parse1(const Byte *p, UInt32 size, const CHeader &_h)
 {
-  bool be = _h.be;
+  const bool be = _h.be;
   if (size < 4)
     return 0;
-  UInt16 t = Get16(p);
-  if (be)
   {
-    Type = (UInt16)(t >> 12);
-    Mode = (UInt16)(t & 0xFFF);
-    Uid = (UInt16)(p[2] >> 4);
-    Gid = (UInt16)(p[2] & 0xF);
-  }
-  else
-  {
-    Type = (UInt16)(t & 0xF);
-    Mode = (UInt16)(t >> 4);
-    Uid = (UInt16)(p[2] & 0xF);
-    Gid = (UInt16)(p[2] >> 4);
+    const UInt32 t = Get16(p);
+    if (be)
+    {
+      Type = (UInt16)(t >> 12);
+      Mode = (UInt16)(t & 0xFFF);
+      Uid = (UInt16)(p[2] >> 4);
+      Gid = (UInt16)(p[2] & 0xF);
+    }
+    else
+    {
+      Type = (UInt16)(t & 0xF);
+      Mode = (UInt16)(t >> 4);
+      Uid = (UInt16)(p[2] & 0xF);
+      Gid = (UInt16)(p[2] >> 4);
+    }
   }
 
   // Xattr = kXattr_Empty;
@@ -409,17 +404,20 @@ UInt32 CNode::Parse2(const Byte *p, UInt32 size, const CHeader &_h)
   bool be = _h.be;
   if (size < 4)
     return 0;
-  UInt16 t = Get16(p);
-  if (be)
   {
-    Type = (UInt16)(t >> 12);
-    Mode = (UInt16)(t & 0xFFF);
+    const UInt32 t = Get16(p);
+    if (be)
+    {
+      Type = (UInt16)(t >> 12);
+      Mode = (UInt16)(t & 0xFFF);
+    }
+    else
+    {
+      Type = (UInt16)(t & 0xF);
+      Mode = (UInt16)(t >> 4);
+    }
   }
-  else
-  {
-    Type = (UInt16)(t & 0xF);
-    Mode = (UInt16)(t >> 4);
-  }
+
   Uid = p[2];
   Gid = p[3];
 
@@ -539,17 +537,21 @@ UInt32 CNode::Parse3(const Byte *p, UInt32 size, const CHeader &_h)
   bool be = _h.be;
   if (size < 12)
     return 0;
-  UInt16 t = Get16(p);
-  if (be)
+  
   {
-    Type = (UInt16)(t >> 12);
-    Mode = (UInt16)(t & 0xFFF);
+    const UInt32 t = Get16(p);
+    if (be)
+    {
+      Type = (UInt16)(t >> 12);
+      Mode = (UInt16)(t & 0xFFF);
+    }
+    else
+    {
+      Type = (UInt16)(t & 0xF);
+      Mode = (UInt16)(t >> 4);
+    }
   }
-  else
-  {
-    Type = (UInt16)(t & 0xF);
-    Mode = (UInt16)(t >> 4);
-  }
+
   Uid = p[2];
   Gid = p[3];
   // GET_32 (4, MTime);
@@ -754,7 +756,7 @@ UInt32 CNode::Parse4(const Byte *p, UInt32 size, const CHeader &_h)
   }
   
   unsigned offset = 20;
-  switch(Type)
+  switch (Type)
   {
     case kType_FIFO: case kType_FIFO + 7:
     case kType_SOCK: case kType_SOCK + 7:
@@ -939,7 +941,7 @@ static const Byte kArcProps[] =
   kpidHeadersSize,
   kpidFileSystem,
   kpidMethod,
-  kpidBlock,
+  kpidClusterSize,
   kpidBigEndian,
   kpidCTime,
   kpidCharacts
@@ -1552,7 +1554,7 @@ HRESULT CHandler::Open2(IInStream *inStream)
       const Byte *p = _inodesData.Data + pos;
       UInt32 size = totalSize - pos;
 
-      switch(_h.Major)
+      switch (_h.Major)
       {
         case 1:  size = n.Parse1(p, size, _h); break;
         case 2:  size = n.Parse2(p, size, _h); break;
@@ -1817,7 +1819,7 @@ STDMETHODIMP CHandler::GetArchiveProperty(PROPID propID, PROPVARIANT *value)
 {
   COM_TRY_BEGIN
   NWindows::NCOM::CPropVariant prop;
-  switch(propID)
+  switch (propID)
   {
     case kpidMethod:
     {
@@ -1850,7 +1852,7 @@ STDMETHODIMP CHandler::GetArchiveProperty(PROPID propID, PROPVARIANT *value)
       prop = res;
       break;
     }
-    case kpidBlock: prop = _h.BlockSize; break;
+    case kpidClusterSize: prop = _h.BlockSize; break;
     case kpidBigEndian: prop = _h.be; break;
     case kpidCTime:
       if (_h.CTime != 0)
@@ -1882,7 +1884,7 @@ STDMETHODIMP CHandler::GetProperty(UInt32 index, PROPID propID, PROPVARIANT *val
   bool isDir = node.IsDir();
   bool be = _h.be;
 
-  switch(propID)
+  switch (propID)
   {
     case kpidPath: prop = MultiByteToUnicodeString(GetPath(index), CP_OEMCP); break;
     case kpidIsDir: prop = isDir; break;
@@ -1899,7 +1901,7 @@ STDMETHODIMP CHandler::GetProperty(UInt32 index, PROPID propID, PROPVARIANT *val
     case kpidMTime:
     {
       UInt32 offset = 0;
-      switch(_h.Major)
+      switch (_h.Major)
       {
         case 1:
           if (node.Type == kType_FILE)
@@ -2111,11 +2113,8 @@ STDMETHODIMP CHandler::Extract(const UInt32 *indices, UInt32 numItems,
     int res = NExtract::NOperationResult::kDataError;
     {
       CMyComPtr<ISequentialInStream> inSeqStream;
-      CMyComPtr<IInStream> inStream;
       HRESULT hres = GetStream(index, &inSeqStream);
-      if (inSeqStream)
-        inSeqStream.QueryInterface(IID_IInStream, &inStream);
-      if (hres == S_FALSE || !inStream)
+      if (hres == S_FALSE || !inSeqStream)
       {
         if (hres == E_OUTOFMEMORY)
           return hres;
@@ -2124,9 +2123,8 @@ STDMETHODIMP CHandler::Extract(const UInt32 *indices, UInt32 numItems,
       else
       {
         RINOK(hres);
-        if (inStream)
         {
-          HRESULT hres = copyCoder->Code(inStream, outStream, NULL, NULL, progress);
+          hres = copyCoder->Code(inSeqStream, outStream, NULL, NULL, progress);
           if (hres == S_OK)
           {
             if (copyCoderSpec->TotalSize == unpackSize)
@@ -2136,15 +2134,17 @@ STDMETHODIMP CHandler::Extract(const UInt32 *indices, UInt32 numItems,
           {
             res = NExtract::NOperationResult::kUnsupportedMethod;
           }
-          else if(hres != S_FALSE)
+          else if (hres != S_FALSE)
           {
             RINOK(hres);
           }
         }
       }
     }
+
     RINOK(extractCallback->SetOperationResult(res));
   }
+  
   return S_OK;
   COM_TRY_END
 }

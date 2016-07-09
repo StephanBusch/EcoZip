@@ -25,7 +25,11 @@ static NSynchronization::CCriticalSection g_CriticalSection;
 
 bool LangOpen(CLang &lang, CFSTR fileName)
 {
+#ifdef PROJ_7ZIPEX
+  return lang.Open(fileName, L"EcoZip");
+#else
   return lang.Open(fileName, L"7-Zip");
+#endif
 }
 
 FString GetLangDirPrefix()
@@ -140,13 +144,18 @@ void LangString_OnlyFromLangFile(UInt32 langID, UString &dest)
 }
 
 static const char *kLangs =
-"ar.bg.ca.zh.-tw.-cn.cs.da.de.el.en.es.fi.fr.he.hu.is.it.ja.ko.nl.no.=nb.=nn."
-"pl.pt.-br.rm.ro.ru.sr.=hr.-spl.-spc.sk.sq.sv.th.tr.ur.id.uk.be.sl.et.lv.lt.tg."
-"fa.vi.hy.az.eu.hsb.mk...tn..xh.zu.af.ka.fo.hi.mt.se.ga."
-".ms.kk.ky.sw.tk.uz.tt.bn.pa.-in.gu.or.ta.te.kn.ml.as.mr.sa.mn.=mn.=mng"
-"bo.cy.kh.lo..gl.kok..sd.syr.si..iu.am.tzm.ks.ne.fy.ps.fil."
-"dv...ha..yo.quz.nso.ba.lb.kl.ig...ti.....ii."
-".arn..moh..br..ug.mi.oc.co.gsw.sah.qut.rw.wo....prs.";
+  "ar.bg.ca.zh.-tw.-cn.cs.da.de.el.en.es.fi.fr.he.hu.is."
+  "it.ja.ko.nl.no.=nb.=nn.pl.pt.-br.rm.ro.ru.sr.=hr.-spl.-spc.sk.sq.sv.th.tr."
+  "ur.id.uk.be.sl.et.lv.lt.tg.fa.vi.hy.az.eu.hsb.mk."
+  "st.ts.tn.ve.xh.zu.af.ka.fo.hi.mt.se.ga.yi.ms.kk."
+  "ky.sw.tk.uz.tt.bn.pa.-in.gu.or.ta.te.kn.ml.as.mr.sa."
+  "mn.=mn.=mng.bo.cy.kh.lo.my.gl.kok..sd.syr.si..iu.am.tzm."
+  "ks.ne.fy.ps.tl.dv..ff.ha..yo.qu.st.ba.lb.kl."
+  "ig.kr.om.ti.gn..la.so.ii..arn..moh..br.."
+  "ug.mi.oc.co."
+  // "gsw.sah.qut.rw.wo....prs...."
+  // ".gd."
+  ;
 
 static void FindShortNames(UInt32 primeLang, UStringVector &names)
 {
@@ -158,10 +167,10 @@ static void FindShortNames(UInt32 primeLang, UStringVector &names)
     bool isSub = (p[0] == '-' || p[0] == '=');
     if (!isSub)
       index++;
-    if (index > primeLang)
-      break;
-    if (index == primeLang)
+    if (index >= primeLang)
     {
+      if (index > primeLang)
+        break;
       UString s;
       if (isSub)
       {
@@ -177,6 +186,33 @@ static void FindShortNames(UInt32 primeLang, UStringVector &names)
     p = p2 + 1;
   }
 }
+
+/*
+#include "../../../Common/IntToString.h"
+
+static struct CC1Lang
+{
+  CC1Lang()
+  {
+    for (int i = 1; i < 150; i++)
+    {
+      UString s;
+      char ttt[32];
+      ConvertUInt32ToHex(i, ttt);
+      s.AddAscii(ttt);
+      UStringVector names;
+      FindShortNames(i, names);
+
+      FOR_VECTOR (k, names)
+      {
+        s.Add_Space();
+        s += names[k];
+      }
+      OutputDebugStringW(s);
+    }
+  }
+} g_cc1;
+*/
 
 // typedef LANGID (WINAPI *GetUserDefaultUILanguageP)();
 
@@ -221,6 +257,9 @@ static void OpenDefaultLang()
           {
             g_LangID = name;
             return;
+          } else if (LangOpen(g_Lang, dirPrefix + us2fs(name) + FTEXT(".ttt"))) {
+            g_LangID = name;
+            return;
           }
         }
       }
@@ -236,7 +275,7 @@ void ReloadLang()
   if (g_IsNT)
   #endif
   {
-    if (g_LangID.IsEmpty())
+    if (g_LangID.IsEmpty() || (g_LangID.Len() == 1 && g_LangID[0] == L'-'))
     {
       OpenDefaultLang();
       return;

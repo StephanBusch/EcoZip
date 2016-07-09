@@ -206,7 +206,6 @@
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7z\7zEncode.cpp" />
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7z\7zExtract.cpp" />
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7z\7zFolderInStream.cpp" />
-    <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7z\7zFolderOutStream.cpp" />
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7z\7zHandler.cpp" />
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7z\7zHandlerOut.cpp" />
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\7z\7zHeader.cpp" />
@@ -224,7 +223,6 @@
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\Chm\ChmHandler.cpp" />
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\Chm\ChmIn.cpp" />
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\Common\CoderMixer2.cpp" />
-    <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\Common\CrossThreadProgress.cpp" />
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\Common\DummyOutStream.cpp" />
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\Common\FindSignature.cpp" />
     <ClCompile Include="..\..\7ze-src\CPP\7zip\Archive\Common\HandlerOut.cpp" />
